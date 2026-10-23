@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f8f4" />
+  <meta name="description" content="Running detection near cameras and transmitting useful signals instead of every video frame. — a project case study by Ayush Kitnawat." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="EdgeFusion multi-camera tracking | Ayush Kitnawat" />
+  <meta property="og:description" content="Running detection near cameras and transmitting useful signals instead of every video frame." />
+  <meta property="og:image" content="../../assets/og-cover.svg" />
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../project-pages.css" />
+  <title>EdgeFusion multi-camera tracking | Ayush Kitnawat</title>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="site-shell">
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="wordmark" href="../../index.html" aria-label="Ayush Kitnawat, homepage">ayush<span class="mark-dot">.</span><span class="wordmark-sub">kitnawat</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation"><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#about">About</a></nav>
+      <a class="header-contact" href="mailto:ayush23160@iiitd.ac.in">Let's talk <span aria-hidden="true">↗</span></a>
+      <button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span></button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#about">About</a><a href="../../index.html#contact">Contact</a></nav>
+  </header>
+  <main id="main">
+    <section class="detail-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../index.html#projects">← All projects</a><span aria-hidden="true">/</span><span>Case study 04</span></nav>
+        <div class="detail-hero-layout">
+          <div>
+            <p class="eyebrow detail-kicker">EDGE AI / DISTRIBUTED TRACKING</p>
+            <h1>EdgeFusion multi-camera tracking<span class="h1-stop">.</span></h1>
+            <p class="detail-deck">Running detection near cameras and transmitting useful signals instead of every video frame.</p>
+            <div class="detail-meta">
+              <div><span class="small-label">MY ROLE</span><strong>Undergraduate researcher · edge inference and distributed tracking pipeline</strong></div>
+              <div><span class="small-label">WHEN / WHERE</span><strong>Aug — Nov 2025<br />IIIT Delhi IRAS HUB</strong></div>
+            </div>
+            <div class="detail-hero-actions"><a class="button button-dark" href="#story">Read the case study <span aria-hidden="true">↓</span></a></div>
+          </div>
+          <figure class="detail-cover">
+            <img src="../../assets/project-edgefusion.svg" alt="Illustrative pipeline showing edge cameras and centralized tracking" width="900" height="600" />
+            <figcaption>ILLUSTRATION / DISTRIBUTED PERCEPTION</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <div class="container detail-layout" id="story">
+      <aside class="detail-rail" aria-label="On this page"><span class="eyebrow">IN THIS CASE STUDY</span><a href="#overview">01 / Overview</a><a href="#contributions">02 / My contributions</a><a href="#architecture">03 / How it works</a><a href="#problems">04 / Problems & solutions</a><a href="#evidence">05 / Media & evidence</a><a href="#results">06 / Results & learnings</a></aside>
+      <div class="detail-article">
+        <section class="detail-section" id="overview">
+          <span class="detail-section-index">01 / THE PROJECT</span>
+          <h2>What was this <em>about?</em></h2>
+          <p class="detail-lead">Streaming every camera frame to a single server wastes network bandwidth and can add latency. EdgeFusion explores a more practical architecture: run fast object detection on Jetson nodes, transfer cropped detections and metadata, then perform cross-camera tracking centrally.</p>
+          <div class="detail-scope"><span class="scope-mark">⌖</span><div><strong>Project context</strong><p>NVIDIA Jetson Orin Nano edge devices, multi-camera experiments.</p></div></div>
+        </section>
+        <section class="detail-section" id="contributions">
+          <span class="detail-section-index">02 / OWNERSHIP</span>
+          <h2>What I actually <em>worked on.</em></h2>
+          <p class="detail-subheading">My responsibilities — distinguished from everything the wider team or research project may have explored.</p>
+          <div class="contribution-list"><div class="contribution"><span>01</span><p>Optimized YOLO11n/YOLOv8n inference on Jetson hardware with TensorRT FP16/INT8 acceleration.</p></div><div class="contribution"><span>02</span><p>Designed a ZeroMQ pipeline for sending object crops and metadata instead of full video streams.</p></div><div class="contribution"><span>03</span><p>Integrated centralized tracking with DeepSORT and cross-camera identity association.</p></div><div class="contribution"><span>04</span><p>Benchmarked inference throughput for single-camera and multi-stream operation.</p></div></div>
+        </section>
+        <section class="detail-section" id="architecture">
+          <span class="detail-section-index">03 / SYSTEM DESIGN</span>
+          <h2>How the pipeline <em>fits together.</em></h2>
+          <div class="pipeline-list"><div class="pipeline-step"><span class="pipeline-count">01</span><div><h3>At each camera</h3><p>Capture frames and run optimized object detection locally on Jetson.</p></div></div><div class="pipeline-step"><span class="pipeline-count">02</span><div><h3>Compress the signal</h3><p>Extract detection crops, labels and metadata rather than raw full-resolution video.</p></div></div><div class="pipeline-step"><span class="pipeline-count">03</span><div><h3>Transmit</h3><p>Send lightweight messages through ZeroMQ to a central tracking node.</p></div></div><div class="pipeline-step"><span class="pipeline-count">04</span><div><h3>Associate</h3><p>Use DeepSORT and camera-level information to maintain object identities across observations.</p></div></div></div>
+        </section>
+        <section class="detail-section" id="problems">
+          <span class="detail-section-index">04 / THE ENGINEERING</span>
+          <h2>The problems & <em>how I approached them.</em></h2>
+          <p class="detail-subheading">The interesting part isn't just a working screenshot; it's the decisions behind the implementation.</p>
+          <div class="challenge-list"><article class="challenge-card"><span class="detail-tiny-label">01 / COMPUTE</span><h3>Full neural inference on an edge device is expensive</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>Jetson resource limits constrain the number of camera streams and frame rate.</p></div><div><span class="challenge-label">MY APPROACH</span><p>Applied TensorRT FP16/INT8 optimization to YOLO detectors and measured throughput instead of assuming desktop performance.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> 20 FPS single-camera and 7–8 FPS multi-stream as reported in the resume.</p></article><article class="challenge-card"><span class="detail-tiny-label">02 / BANDWIDTH</span><h3>Multi-camera video is a costly thing to move</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>Shipping unfiltered full video over the network increases bandwidth demand.</p></div><div><span class="challenge-label">MY APPROACH</span><p>Changed the architecture to transmit object crops and compact metadata via ZeroMQ, keeping heavier image processing near the camera.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> Distributed inference architecture implemented during IRAS HUB research.</p></article><article class="challenge-card"><span class="detail-tiny-label">03 / ASSOCIATION</span><h3>One object appears under different cameras</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>Individual detections do not automatically maintain a consistent identity across time or camera boundaries.</p></div><div><span class="challenge-label">MY APPROACH</span><p>Used centralized DeepSORT-based tracking and cross-camera association to maintain object tracks beyond a single frame.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> Research pipeline implementation; identity accuracy is not claimed without an evaluation report.</p></article></div>
+        </section>
+        <section class="detail-section" id="evidence">
+          <span class="detail-section-index">05 / FROM THE WORKBENCH</span>
+          <h2>See the <em>work.</em></h2>
+          <p class="detail-subheading">Real outputs are marked as such. Illustrations explain the concept and are not presented as project photographs.</p>
+          <div class="evidence-grid"><figure class="evidence-item"><a href="../../assets/project-edgefusion.svg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/project-edgefusion.svg" alt="Conceptual visualization of cameras, Jetson nodes and central tracking." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Illustration · Architecture</strong><span>Conceptual visualization of cameras, Jetson nodes and central tracking.</span></figcaption></figure></div>
+          <div class="photo-request"><span class="photo-icon">▧</span><div><strong>More project photos & demo frames welcome</strong><p>Add a photo of the Jetson Orin Nano setup, multi-camera view and a cross-camera tracking screen capture.</p><small>Existing charts are authentic; other artwork is explicitly labeled as illustrative.</small></div></div>
+          
+          <div class="demo-note"><span class="eyebrow">DEMO STATUS</span><p>An externally accessible tracking demo or repository has not been supplied. A verified video can be added without redesigning the page.</p></div>
+        </section>
+        <section class="detail-section" id="results">
+          <span class="detail-section-index">06 / OUTCOMES</span>
+          <h2>What came <em>out of it.</em></h2>
+          <div class="detail-stats"><div><strong>20 FPS</strong><span>Reported single-camera optimized inference</span></div><div><strong>7–8 FPS</strong><span>Reported multi-stream throughput</span></div><div><strong>ZeroMQ</strong><span>Distributed crop + metadata messaging</span></div></div>
+          <blockquote class="detail-takeaway">“Moving less data can matter as much as making a detector faster — especially for edge systems.”</blockquote>
+          <p class="detail-disclaimer">Frame-rate figures reflect reported research measurements under the project configuration, not a general guarantee across hardware.</p>
+        </section>
+        <div class="detail-links"><h3>Explore further</h3><div><p>Public code and demo links can be added here when available.</p></div></div>
+      </div>
+    </div>
+
+    <section class="other-projects"><div class="container"><div class="other-heading"><span class="eyebrow">KEEP EXPLORING</span><h2>More <em>engineering stories.</em></h2></div><div class="related-projects"><a class="related-card" href="../autonomous-golf-cart/index.html"><span class="detail-tiny-label">AUTONOMOUS SYSTEMS / LOCALIZATION</span><h3>Autonomous golf cart localization</h3><span class="related-arrow">Read case study ↗</span></a><a class="related-card" href="../enhanced-kinectfusion/index.html"><span class="detail-tiny-label">3D VISION / DENSE RECONSTRUCTION</span><h3>Enhanced KinectFusion</h3><span class="related-arrow">Read case study ↗</span></a><a class="related-card" href="../vision-guided-arm/index.html"><span class="detail-tiny-label">ROBOTICS / VISION-GUIDED MANIPULATION</span><h3>Vision-guided robotic arm</h3><span class="related-arrow">Read case study ↗</span></a></div><div class="project-pagination"><a href="../vision-guided-arm/index.html">← Previous project</a><a href="../rocket-avionics/index.html">Next project →</a></div></div></section>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner"><a class="footer-wordmark" href="../../index.html">ayush<span>.</span></a><p>Robotics, vision, systems, and real-world iteration.</p><div class="footer-links"><a href="../../index.html#projects">Projects ↗</a><a href="mailto:ayush23160@iiitd.ac.in">Email ↗</a><a href="#top">Back to top ↑</a></div><span class="copyright">© <span id="year">2026</span> Ayush Kitnawat</span></div></footer>
+</div>
+<script defer src="../../main.js"></script>
+</body></html>

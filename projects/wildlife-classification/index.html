@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f8f4" />
+  <meta name="description" content="Understanding not only which animal a model predicts, but how it organizes visual concepts. — a project case study by Ayush Kitnawat." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Wildlife classification &amp; feature analysis | Ayush Kitnawat" />
+  <meta property="og:description" content="Understanding not only which animal a model predicts, but how it organizes visual concepts." />
+  <meta property="og:image" content="../../assets/og-cover.svg" />
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../project-pages.css" />
+  <title>Wildlife classification &amp; feature analysis | Ayush Kitnawat</title>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="site-shell">
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="wordmark" href="../../index.html" aria-label="Ayush Kitnawat, homepage">ayush<span class="mark-dot">.</span><span class="wordmark-sub">kitnawat</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation"><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#about">About</a></nav>
+      <a class="header-contact" href="mailto:ayush23160@iiitd.ac.in">Let's talk <span aria-hidden="true">↗</span></a>
+      <button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span></button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#about">About</a><a href="../../index.html#contact">Contact</a></nav>
+  </header>
+  <main id="main">
+    <section class="detail-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../index.html#projects">← All projects</a><span aria-hidden="true">/</span><span>Case study 06</span></nav>
+        <div class="detail-hero-layout">
+          <div>
+            <p class="eyebrow detail-kicker">COMPUTER VISION / FEATURE ANALYSIS</p>
+            <h1>Wildlife classification &amp; feature analysis<span class="h1-stop">.</span></h1>
+            <p class="detail-deck">Understanding not only which animal a model predicts, but how it organizes visual concepts.</p>
+            <div class="detail-meta">
+              <div><span class="small-label">MY ROLE</span><strong>End-to-end dataset experiments, transfer learning &amp; embedding analysis</strong></div>
+              <div><span class="small-label">WHEN / WHERE</span><strong>Feb 2025<br />Individual computer vision project</strong></div>
+            </div>
+            <div class="detail-hero-actions"><a class="button button-dark" href="#story">Read the case study <span aria-hidden="true">↓</span></a></div>
+          </div>
+          <figure class="detail-cover">
+            <img src="../../assets/project-kinectfusion.svg" alt="Abstract feature-space artwork serving as placeholder illustration" width="900" height="600" />
+            <figcaption>ILLUSTRATION / VISUAL REPRESENTATIONS</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <div class="container detail-layout" id="story">
+      <aside class="detail-rail" aria-label="On this page"><span class="eyebrow">IN THIS CASE STUDY</span><a href="#overview">01 / Overview</a><a href="#contributions">02 / My contributions</a><a href="#architecture">03 / How it works</a><a href="#problems">04 / Problems & solutions</a><a href="#evidence">05 / Media & evidence</a><a href="#results">06 / Results & learnings</a></aside>
+      <div class="detail-article">
+        <section class="detail-section" id="overview">
+          <span class="detail-section-index">01 / THE PROJECT</span>
+          <h2>What was this <em>about?</em></h2>
+          <p class="detail-lead">Trained image classifiers for ten wildlife species, then studied the learned representations with pretrained DINOv2 embeddings. The work combined practical supervised classification with an exploratory look into how feature spaces separate categories.</p>
+          <div class="detail-scope"><span class="scope-mark">⌖</span><div><strong>Project context</strong><p>Ten-species wildlife image dataset and repeatable training experiments.</p></div></div>
+        </section>
+        <section class="detail-section" id="contributions">
+          <span class="detail-section-index">02 / OWNERSHIP</span>
+          <h2>What I actually <em>worked on.</em></h2>
+          <p class="detail-subheading">My responsibilities — distinguished from everything the wider team or research project may have explored.</p>
+          <div class="contribution-list"><div class="contribution"><span>01</span><p>Built image-classification experiments with custom CNNs and fine-tuned ResNet-18.</p></div><div class="contribution"><span>02</span><p>Applied image augmentation and transfer learning to improve robustness and generalization.</p></div><div class="contribution"><span>03</span><p>Extracted DINOv2 embeddings and explored category structure through t-SNE and K-Means clustering.</p></div><div class="contribution"><span>04</span><p>Tracked experiments, model variants and metrics using Weights &amp; Biases.</p></div></div>
+        </section>
+        <section class="detail-section" id="architecture">
+          <span class="detail-section-index">03 / SYSTEM DESIGN</span>
+          <h2>How the pipeline <em>fits together.</em></h2>
+          <div class="pipeline-list"><div class="pipeline-step"><span class="pipeline-count">01</span><div><h3>Prepare</h3><p>Clean and augment a ten-species image dataset.</p></div></div><div class="pipeline-step"><span class="pipeline-count">02</span><div><h3>Train</h3><p>Compare CNN baselines with fine-tuned ResNet-18.</p></div></div><div class="pipeline-step"><span class="pipeline-count">03</span><div><h3>Represent</h3><p>Extract visual feature embeddings with DINOv2.</p></div></div><div class="pipeline-step"><span class="pipeline-count">04</span><div><h3>Inspect</h3><p>Visualize with t-SNE, cluster with K-Means and compare experiments.</p></div></div></div>
+        </section>
+        <section class="detail-section" id="problems">
+          <span class="detail-section-index">04 / THE ENGINEERING</span>
+          <h2>The problems & <em>how I approached them.</em></h2>
+          <p class="detail-subheading">The interesting part isn't just a working screenshot; it's the decisions behind the implementation.</p>
+          <div class="challenge-list"><article class="challenge-card"><span class="detail-tiny-label">01 / GENERALIZATION</span><h3>A classifier can memorize the wrong visual cues</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>Limited datasets and variable backgrounds can cause a model to depend on shortcuts rather than animal appearance.</p></div><div><span class="challenge-label">MY APPROACH</span><p>Used augmentation, pretrained features and comparisons against simpler CNNs to investigate robustness.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> Training pipeline and augmentation experiments from the project summary.</p></article><article class="challenge-card"><span class="detail-tiny-label">02 / INTERPRETATION</span><h3>Accuracy does not explain representation quality</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>A class label says little about how the visual model arranges similar or dissimilar species internally.</p></div><div><span class="challenge-label">MY APPROACH</span><p>Used DINOv2 features, t-SNE and K-Means to inspect structure in feature space.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> Feature-space analysis documented in the resume.</p></article><article class="challenge-card"><span class="detail-tiny-label">03 / EXPERIMENTS</span><h3>Comparisons need repeatable records</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>Without run tracking, architecture and augmentation changes are hard to compare fairly.</p></div><div><span class="challenge-label">MY APPROACH</span><p>Logged training runs and metrics in Weights &amp; Biases to retain experimental context.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> Experiment-management setup described in the resume.</p></article></div>
+        </section>
+        <section class="detail-section" id="evidence">
+          <span class="detail-section-index">05 / FROM THE WORKBENCH</span>
+          <h2>See the <em>work.</em></h2>
+          <p class="detail-subheading">Real outputs are marked as such. Illustrations explain the concept and are not presented as project photographs.</p>
+          <div class="evidence-grid"><figure class="evidence-item"><a href="../../assets/project-kinectfusion.svg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/project-kinectfusion.svg" alt="Placeholder conceptual artwork until confusion matrices and feature plots are added." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Illustration · Visual embeddings</strong><span>Placeholder conceptual artwork until confusion matrices and feature plots are added.</span></figcaption></figure></div>
+          <div class="photo-request"><span class="photo-icon">▧</span><div><strong>More project photos & demo frames welcome</strong><p>Add class sample grids, confusion matrix, t-SNE visualizations and K-Means feature plots.</p><small>Existing charts are authentic; other artwork is explicitly labeled as illustrative.</small></div></div>
+          
+          <div class="demo-note"><span class="eyebrow">DEMO STATUS</span><p>Public notebook, result screenshots and dataset sample images have not yet been supplied.</p></div>
+        </section>
+        <section class="detail-section" id="results">
+          <span class="detail-section-index">06 / OUTCOMES</span>
+          <h2>What came <em>out of it.</em></h2>
+          <div class="detail-stats"><div><strong>10</strong><span>Wildlife categories studied</span></div><div><strong>ResNet-18</strong><span>Fine-tuned transfer-learning model</span></div><div><strong>DINOv2</strong><span>Representation analysis</span></div></div>
+          <blockquote class="detail-takeaway">“A useful vision experiment asks what the representation learned — not just what the final accuracy number was.”</blockquote>
+          <p class="detail-disclaimer">No validation accuracy or benchmark claim is made because the supplied resume does not give one.</p>
+        </section>
+        <div class="detail-links"><h3>Explore further</h3><div><p>Public code and demo links can be added here when available.</p></div></div>
+      </div>
+    </div>
+
+    <section class="other-projects"><div class="container"><div class="other-heading"><span class="eyebrow">KEEP EXPLORING</span><h2>More <em>engineering stories.</em></h2></div><div class="related-projects"><a class="related-card" href="../autonomous-golf-cart/index.html"><span class="detail-tiny-label">AUTONOMOUS SYSTEMS / LOCALIZATION</span><h3>Autonomous golf cart localization</h3><span class="related-arrow">Read case study ↗</span></a><a class="related-card" href="../enhanced-kinectfusion/index.html"><span class="detail-tiny-label">3D VISION / DENSE RECONSTRUCTION</span><h3>Enhanced KinectFusion</h3><span class="related-arrow">Read case study ↗</span></a><a class="related-card" href="../vision-guided-arm/index.html"><span class="detail-tiny-label">ROBOTICS / VISION-GUIDED MANIPULATION</span><h3>Vision-guided robotic arm</h3><span class="related-arrow">Read case study ↗</span></a></div><div class="project-pagination"><a href="../rocket-avionics/index.html">← Previous project</a><a href="../autonomous-golf-cart/index.html">Next project →</a></div></div></section>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner"><a class="footer-wordmark" href="../../index.html">ayush<span>.</span></a><p>Robotics, vision, systems, and real-world iteration.</p><div class="footer-links"><a href="../../index.html#projects">Projects ↗</a><a href="mailto:ayush23160@iiitd.ac.in">Email ↗</a><a href="#top">Back to top ↑</a></div><span class="copyright">© <span id="year">2026</span> Ayush Kitnawat</span></div></footer>
+</div>
+<script defer src="../../main.js"></script>
+</body></html>

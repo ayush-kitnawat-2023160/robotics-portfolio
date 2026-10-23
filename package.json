@@ -1,0 +1,14 @@
+{
+  "name": "ayush-kitnawat-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "predev": "node render-projects.mjs",
+    "dev": "node server.mjs",
+    "render": "node render-projects.mjs",
+    "build": "node build.mjs",
+    "preview": "node server.mjs dist",
+    "test": "node test-site.mjs"
+  }
+}
