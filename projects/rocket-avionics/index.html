@@ -12,7 +12,7 @@
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../styles.css" />
   <link rel="stylesheet" href="../../project-pages.css" />
   <title>Model rocketry · avionics &amp; telemetry | Ayush Kitnawat</title>
@@ -22,12 +22,12 @@
 <div class="site-shell">
   <header class="site-header" id="top">
     <div class="container header-inner">
-      <a class="wordmark" href="../../index.html" aria-label="Ayush Kitnawat, homepage">ayush<span class="mark-dot">.</span><span class="wordmark-sub">kitnawat</span></a>
-      <nav class="desktop-nav" aria-label="Main navigation"><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#about">About</a></nav>
+      <a class="wordmark" href="../../index.html" aria-label="Ayush Kitnawat, homepage"><span>Ayush</span><span class="wordmark-sub">Kitnawat</span><span class="mark-dot">.</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation"><a href="../../index.html#about">About</a><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a></nav>
       <a class="header-contact" href="mailto:ayush23160@iiitd.ac.in">Let's talk <span aria-hidden="true">↗</span></a>
       <button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span></button>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#about">About</a><a href="../../index.html#contact">Contact</a></nav>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="../../index.html#about">About</a><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#contact">Contact</a></nav>
   </header>
   <main id="main">
     <section class="detail-hero">
@@ -45,8 +45,8 @@
             <div class="detail-hero-actions"><a class="button button-dark" href="#story">Read the case study <span aria-hidden="true">↓</span></a></div>
           </div>
           <figure class="detail-cover">
-            <img src="../../assets/hero-lidar.svg" alt="Abstract sensing system visualization used as illustrative cover art" width="900" height="600" />
-            <figcaption>ILLUSTRATION / EMBEDDED TELEMETRY</figcaption>
+            <img src="../../assets/media/rocket-launch-display.jpg" alt="Actual upright model rocket displayed at an outdoor event" width="900" height="600" />
+            <figcaption>REAL PROJECT PHOTO / MODEL ROCKET</figcaption>
           </figure>
         </div>
       </div>
@@ -56,43 +56,50 @@
       <aside class="detail-rail" aria-label="On this page"><span class="eyebrow">IN THIS CASE STUDY</span><a href="#overview">01 / Overview</a><a href="#contributions">02 / My contributions</a><a href="#architecture">03 / How it works</a><a href="#problems">04 / Problems & solutions</a><a href="#evidence">05 / Media & evidence</a><a href="#results">06 / Results & learnings</a></aside>
       <div class="detail-article">
         <section class="detail-section" id="overview">
-          <span class="detail-section-index">01 / THE PROJECT</span>
-          <h2>What was this <em>about?</em></h2>
-          <p class="detail-lead">A small flight system needs an onboard computer that samples sensors, packages useful measurements, and gets those measurements to a ground station. I led avionics and telemetry development on an STM32-based model rocket system using LoRa wireless communication.</p>
+          <span class="detail-section-index">01 / THE BIG PICTURE</span>
+          <h2>The problem & <em>our solution.</em></h2>
+          <p class="detail-lead">An embedded-systems project to measure and monitor a model rocket’s flight from the ground.</p>
+          <div class="problem-story">
+            <div class="problem-story-card problem-story-primary"><span class="detail-tiny-label">THE REAL-WORLD PROBLEM</span><h3>Why was this needed?</h3><p>During flight and testing, a rocket cannot be connected to a laptop by a cable. The team needs live information about its altitude, orientation and system behavior to understand what is happening and investigate faults.</p></div>
+            <div class="problem-story-card"><span class="detail-tiny-label">THE PROJECT GOAL</span><h3>What did we set out to build?</h3><p>Build an STM32-based onboard sensing and telemetry system, send flight measurements over LoRa, and display the readings through a Python ground station.</p></div>
+            <div class="problem-story-card"><span class="detail-tiny-label">PRACTICAL VALUE</span><h3>Why does it matter?</h3><p>Makes flight data visible during experiments and available for review afterward. No verified radio range or flight reliability metric is claimed here.</p></div>
+          </div>
           <div class="detail-scope"><span class="scope-mark">⌖</span><div><strong>Project context</strong><p>Embedded microcontroller, onboard sensing, wireless telemetry and Python ground station.</p></div></div>
         </section>
         <section class="detail-section" id="contributions">
           <span class="detail-section-index">02 / OWNERSHIP</span>
-          <h2>What I actually <em>worked on.</em></h2>
-          <p class="detail-subheading">My responsibilities — distinguished from everything the wider team or research project may have explored.</p>
+          <h2>What I <em>worked on.</em></h2>
+          <p class="detail-subheading">My contribution to the project, separate from the broader team's work.</p>
           <div class="contribution-list"><div class="contribution"><span>01</span><p>Designed and implemented STM32 firmware integration for flight-related sensor readings.</p></div><div class="contribution"><span>02</span><p>Integrated onboard measurements of altitude, orientation and other flight telemetry.</p></div><div class="contribution"><span>03</span><p>Implemented LoRa-based data communication between the onboard system and a ground station.</p></div><div class="contribution"><span>04</span><p>Built a Python pipeline for live visualization, monitoring and post-flight analysis.</p></div></div>
         </section>
         <section class="detail-section" id="architecture">
           <span class="detail-section-index">03 / SYSTEM DESIGN</span>
-          <h2>How the pipeline <em>fits together.</em></h2>
+          <h2>How it <em>works.</em></h2>
           <div class="pipeline-list"><div class="pipeline-step"><span class="pipeline-count">01</span><div><h3>Measure</h3><p>Collect flight-related signals using onboard sensors and an STM32.</p></div></div><div class="pipeline-step"><span class="pipeline-count">02</span><div><h3>Package</h3><p>Represent key readings as telemetry suitable for the wireless link.</p></div></div><div class="pipeline-step"><span class="pipeline-count">03</span><div><h3>Transmit</h3><p>Send packets from the vehicle over LoRa to the receiver.</p></div></div><div class="pipeline-step"><span class="pipeline-count">04</span><div><h3>Visualize</h3><p>Decode and display live values in a Python ground station for inspection and analysis.</p></div></div></div>
         </section>
         <section class="detail-section" id="problems">
           <span class="detail-section-index">04 / THE ENGINEERING</span>
-          <h2>The problems & <em>how I approached them.</em></h2>
-          <p class="detail-subheading">The interesting part isn't just a working screenshot; it's the decisions behind the implementation.</p>
+          <h2>Challenges & <em>what I did.</em></h2>
+          <p class="detail-subheading">What made the project difficult, and the choices I made while working through it.</p>
           <div class="challenge-list"><article class="challenge-card"><span class="detail-tiny-label">01 / EMBEDDED</span><h3>Hardware delivers different sensor signals</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>A flight controller needs to bring together multiple measurements at a useful update cadence.</p></div><div><span class="challenge-label">MY APPROACH</span><p>Built STM32-side sensor integration and a consistent stream of altitude, orientation and flight data.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> Avionics and telemetry implementation described in the resume.</p></article><article class="challenge-card"><span class="detail-tiny-label">02 / LINK</span><h3>The receiver is not next to the rocket</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>A telemetry system must communicate over a wireless long-range channel instead of relying on a cable.</p></div><div><span class="challenge-label">MY APPROACH</span><p>Selected LoRa for telemetry transport and built corresponding reception handling at the ground station.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> LoRa hardware and software integration.</p></article><article class="challenge-card"><span class="detail-tiny-label">03 / DIAGNOSTICS</span><h3>Raw serial values are hard to interpret during testing</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>Flight telemetry is more useful when operators can inspect trends while it arrives.</p></div><div><span class="challenge-label">MY APPROACH</span><p>Implemented Python-based live monitoring and a post-flight analysis path rather than storing unstructured logs alone.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> Ground-station visualization and monitoring software.</p></article></div>
         </section>
         <section class="detail-section" id="evidence">
           <span class="detail-section-index">05 / FROM THE WORKBENCH</span>
-          <h2>See the <em>work.</em></h2>
+          <h2>Photos, plots & <em>demo.</em></h2>
           <p class="detail-subheading">Real outputs are marked as such. Illustrations explain the concept and are not presented as project photographs.</p>
-          <div class="evidence-grid"><figure class="evidence-item"><a href="../../assets/hero-lidar.svg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/hero-lidar.svg" alt="Generic sensing artwork used until hardware photos are added." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Illustration · Sensor system</strong><span>Generic sensing artwork used until hardware photos are added.</span></figcaption></figure></div>
-          <div class="photo-request"><span class="photo-icon">▧</span><div><strong>More project photos & demo frames welcome</strong><p>Add avionics PCB/wiring photos, the LoRa transmitter/receiver, and a screenshot of the ground station.</p><small>Existing charts are authentic; other artwork is explicitly labeled as illustrative.</small></div></div>
+          <div class="evidence-grid"><figure class="evidence-item"><a href="../../assets/media/rocket-launch-display.jpg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/rocket-launch-display.jpg" alt="The team’s model rocket on display at an outdoor event. Photo from the project collection." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Project photo · Full rocket</strong><span>The team’s model rocket on display at an outdoor event. Photo from the project collection.</span></figcaption></figure><figure class="evidence-item"><a href="../../assets/media/rocket-launch-portrait.jpg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/rocket-launch-portrait.jpg" alt="An upright view of the completed rocket and launch/event setup." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Project photo · Rocket on stand</strong><span>An upright view of the completed rocket and launch/event setup.</span></figcaption></figure><figure class="evidence-item"><a href="../../assets/media/rocket-hardware-closeup.jpg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/rocket-hardware-closeup.jpg" alt="Close view of the rocket body, fins and nearby electronics at the display." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Project photo · Rocket body</strong><span>Close view of the rocket body, fins and nearby electronics at the display.</span></figcaption></figure><figure class="evidence-item"><a href="../../assets/media/rocket-side-view.jpg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/rocket-side-view.jpg" alt="Additional display angle showing the rocket body, fins and nearby hardware." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Project photo · Rocket body and fins</strong><span>Additional display angle showing the rocket body, fins and nearby hardware.</span></figcaption></figure></div>
+          
           
           <div class="demo-note"><span class="eyebrow">DEMO STATUS</span><p>Flight video and ground-station screenshots have not been supplied for public use.</p></div>
         </section>
+        
         <section class="detail-section" id="results">
           <span class="detail-section-index">06 / OUTCOMES</span>
-          <h2>What came <em>out of it.</em></h2>
+          <h2>Results & <em>takeaways.</em></h2>
           <div class="detail-stats"><div><strong>STM32</strong><span>Onboard sensing and microcontroller integration</span></div><div><strong>LoRa</strong><span>Long-range wireless telemetry</span></div><div><strong>Python</strong><span>Live ground station and analysis</span></div></div>
           <blockquote class="detail-takeaway">“Reliable robotics also depends on the invisible engineering: synchronized measurements, understandable packets and useful diagnostics.”</blockquote>
           <p class="detail-disclaimer">No flight range, packet-loss rate or field-performance metric is claimed without a published test.</p>
+          
         </section>
         <div class="detail-links"><h3>Explore further</h3><div><p>Public code and demo links can be added here when available.</p></div></div>
       </div>
@@ -100,7 +107,7 @@
 
     <section class="other-projects"><div class="container"><div class="other-heading"><span class="eyebrow">KEEP EXPLORING</span><h2>More <em>engineering stories.</em></h2></div><div class="related-projects"><a class="related-card" href="../autonomous-golf-cart/index.html"><span class="detail-tiny-label">AUTONOMOUS SYSTEMS / LOCALIZATION</span><h3>Autonomous golf cart localization</h3><span class="related-arrow">Read case study ↗</span></a><a class="related-card" href="../enhanced-kinectfusion/index.html"><span class="detail-tiny-label">3D VISION / DENSE RECONSTRUCTION</span><h3>Enhanced KinectFusion</h3><span class="related-arrow">Read case study ↗</span></a><a class="related-card" href="../vision-guided-arm/index.html"><span class="detail-tiny-label">ROBOTICS / VISION-GUIDED MANIPULATION</span><h3>Vision-guided robotic arm</h3><span class="related-arrow">Read case study ↗</span></a></div><div class="project-pagination"><a href="../edgefusion/index.html">← Previous project</a><a href="../wildlife-classification/index.html">Next project →</a></div></div></section>
   </main>
-  <footer class="site-footer"><div class="container footer-inner"><a class="footer-wordmark" href="../../index.html">ayush<span>.</span></a><p>Robotics, vision, systems, and real-world iteration.</p><div class="footer-links"><a href="../../index.html#projects">Projects ↗</a><a href="mailto:ayush23160@iiitd.ac.in">Email ↗</a><a href="#top">Back to top ↑</a></div><span class="copyright">© <span id="year">2026</span> Ayush Kitnawat</span></div></footer>
+  <footer class="site-footer"><div class="container footer-inner"><a class="footer-wordmark" href="../../index.html">Ayush Kitnawat<span>.</span></a><p>Robotics, vision, systems, and real-world iteration.</p><div class="footer-links"><a href="../../index.html#projects">Projects ↗</a><a href="mailto:ayush23160@iiitd.ac.in">Email ↗</a><a href="#top">Back to top ↑</a></div><span class="copyright">© <span id="year">2026</span> Ayush Kitnawat</span></div></footer>
 </div>
 <script defer src="../../main.js"></script>
 </body></html>

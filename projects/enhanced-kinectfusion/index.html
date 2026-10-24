@@ -12,7 +12,7 @@
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../styles.css" />
   <link rel="stylesheet" href="../../project-pages.css" />
   <title>Enhanced KinectFusion | Ayush Kitnawat</title>
@@ -22,12 +22,12 @@
 <div class="site-shell">
   <header class="site-header" id="top">
     <div class="container header-inner">
-      <a class="wordmark" href="../../index.html" aria-label="Ayush Kitnawat, homepage">ayush<span class="mark-dot">.</span><span class="wordmark-sub">kitnawat</span></a>
-      <nav class="desktop-nav" aria-label="Main navigation"><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#about">About</a></nav>
+      <a class="wordmark" href="../../index.html" aria-label="Ayush Kitnawat, homepage"><span>Ayush</span><span class="wordmark-sub">Kitnawat</span><span class="mark-dot">.</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation"><a href="../../index.html#about">About</a><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a></nav>
       <a class="header-contact" href="mailto:ayush23160@iiitd.ac.in">Let's talk <span aria-hidden="true">↗</span></a>
       <button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span></button>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#about">About</a><a href="../../index.html#contact">Contact</a></nav>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="../../index.html#about">About</a><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#contact">Contact</a></nav>
   </header>
   <main id="main">
     <section class="detail-hero">
@@ -45,8 +45,8 @@
             <div class="detail-hero-actions"><a class="button button-dark" href="#story">Read the case study <span aria-hidden="true">↓</span></a></div>
           </div>
           <figure class="detail-cover">
-            <img src="../../assets/project-kinectfusion.svg" alt="Original illustrative point-cloud artwork representing the reconstruction pipeline" width="900" height="600" />
-            <figcaption>ILLUSTRATION / 3D RECONSTRUCTION</figcaption>
+            <img src="../../assets/media/kinect-reconstruction.jpg" alt="Actual 3D reconstruction of an indoor scene from the KinectFusion project slides" width="900" height="600" />
+            <figcaption>REAL PROJECT RESULT / ENHANCED 3D RECONSTRUCTION</figcaption>
           </figure>
         </div>
       </div>
@@ -56,43 +56,50 @@
       <aside class="detail-rail" aria-label="On this page"><span class="eyebrow">IN THIS CASE STUDY</span><a href="#overview">01 / Overview</a><a href="#contributions">02 / My contributions</a><a href="#architecture">03 / How it works</a><a href="#problems">04 / Problems & solutions</a><a href="#evidence">05 / Media & evidence</a><a href="#results">06 / Results & learnings</a></aside>
       <div class="detail-article">
         <section class="detail-section" id="overview">
-          <span class="detail-section-index">01 / THE PROJECT</span>
-          <h2>What was this <em>about?</em></h2>
-          <p class="detail-lead">KinectFusion integrates RGB-D measurements into a volumetric TSDF model. This project explored improving the front-end pose estimate and the quality of the fused reconstruction by combining learned visual correspondences, geometric alignment and confidence-based frame acceptance.</p>
+          <span class="detail-section-index">01 / THE BIG PICTURE</span>
+          <h2>The problem & <em>our solution.</em></h2>
+          <p class="detail-lead">A 3D reconstruction project focused on creating more consistent models from a moving RGB-D camera.</p>
+          <div class="problem-story">
+            <div class="problem-story-card problem-story-primary"><span class="detail-tiny-label">THE REAL-WORLD PROBLEM</span><h3>Why was this needed?</h3><p>3D scans are useful for digital twins, inspection and robot mapping, but camera-motion errors and noisy depth can produce broken or distorted models. A reconstruction pipeline must estimate camera movement accurately before combining frames.</p></div>
+            <div class="problem-story-card"><span class="detail-tiny-label">THE PROJECT GOAL</span><h3>What did we set out to build?</h3><p>Improve the KinectFusion pipeline using visual feature matching to initialize camera motion, ICP to refine alignment, and confidence checks to reduce the influence of unreliable frames.</p></div>
+            <div class="problem-story-card"><span class="detail-tiny-label">PRACTICAL VALUE</span><h3>Why does it matter?</h3><p>A more stable reconstruction pipeline can reduce manual cleanup and make camera-based scene capture more useful. Our reported TUM RGB-D reconstruction RMSE decreased from 1.20 m to 0.27 m.</p></div>
+          </div>
           <div class="detail-scope"><span class="scope-mark">⌖</span><div><strong>Project context</strong><p>TUM RGB-D benchmark evaluation and project experiments.</p></div></div>
         </section>
         <section class="detail-section" id="contributions">
           <span class="detail-section-index">02 / OWNERSHIP</span>
-          <h2>What I actually <em>worked on.</em></h2>
-          <p class="detail-subheading">My responsibilities — distinguished from everything the wider team or research project may have explored.</p>
+          <h2>What I <em>worked on.</em></h2>
+          <p class="detail-subheading">My contribution to the project, separate from the broader team's work.</p>
           <div class="contribution-list"><div class="contribution"><span>01</span><p>Integrated SuperPoint/LightGlue feature correspondences with PnP to give geometric tracking a better initial camera pose.</p></div><div class="contribution"><span>02</span><p>Combined feature-based pose initialization with multi-scale ICP refinement and TSDF fusion.</p></div><div class="contribution"><span>03</span><p>Worked on depth completion, confidence-based filtering and reconstruction evaluation, including the reported TUM RGB-D RMSE comparison.</p></div><div class="contribution"><span>04</span><p>Explored Gaussian Splatting as an additional representation for visually expressive reconstruction, distinct from the tracking core.</p></div></div>
         </section>
         <section class="detail-section" id="architecture">
           <span class="detail-section-index">03 / SYSTEM DESIGN</span>
-          <h2>How the pipeline <em>fits together.</em></h2>
+          <h2>How it <em>works.</em></h2>
           <div class="pipeline-list"><div class="pipeline-step"><span class="pipeline-count">01</span><div><h3>RGB-D input</h3><p>Take color and aligned depth frames, with calibrated camera intrinsics.</p></div></div><div class="pipeline-step"><span class="pipeline-count">02</span><div><h3>Visual warm start</h3><p>Match features across frames and solve for an initial relative pose using PnP.</p></div></div><div class="pipeline-step"><span class="pipeline-count">03</span><div><h3>Geometric refinement</h3><p>Refine alignment with multi-scale point-to-plane ICP; reject weak updates.</p></div></div><div class="pipeline-step"><span class="pipeline-count">04</span><div><h3>Fuse &amp; inspect</h3><p>Integrate trusted depth into a TSDF surface model and evaluate the 3D result.</p></div></div></div>
         </section>
         <section class="detail-section" id="problems">
           <span class="detail-section-index">04 / THE ENGINEERING</span>
-          <h2>The problems & <em>how I approached them.</em></h2>
-          <p class="detail-subheading">The interesting part isn't just a working screenshot; it's the decisions behind the implementation.</p>
+          <h2>Challenges & <em>what I did.</em></h2>
+          <p class="detail-subheading">What made the project difficult, and the choices I made while working through it.</p>
           <div class="challenge-list"><article class="challenge-card"><span class="detail-tiny-label">01 / TRACKING</span><h3>ICP alone is sensitive to initialization</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>Point-to-plane ICP can converge to a poor alignment when the camera moves too far or the depth geometry is ambiguous.</p></div><div><span class="challenge-label">MY APPROACH</span><p>Used learned RGB feature matches and a PnP warm start so ICP begins closer to the expected inter-frame transform.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> The repository documents feature warm-start controls and a pure-ICP ablation switch.</p></article><article class="challenge-card"><span class="detail-tiny-label">02 / DEPTH</span><h3>Not every RGB-D frame deserves to be fused</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>Incomplete or noisy depth can damage the integrated surface and accumulate reconstruction errors.</p></div><div><span class="challenge-label">MY APPROACH</span><p>Experimented with depth completion and confidence-based frame selection, then evaluated reconstructed geometry instead of relying on attractive renders alone.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> Project repository confidence plot and benchmark summary.</p></article><article class="challenge-card"><span class="detail-tiny-label">03 / DRIFT</span><h3>Small pose errors become large 3D artifacts</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>Frame-to-frame errors propagate into TSDF fusion and can distort rooms and surfaces.</p></div><div><span class="challenge-label">MY APPROACH</span><p>Combined visual correspondences, multi-scale geometric refinement and loop-consistency experiments to constrain drift.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> Reported TUM RGB-D RMSE improvement on the project resume.</p></article></div>
         </section>
         <section class="detail-section" id="evidence">
           <span class="detail-section-index">05 / FROM THE WORKBENCH</span>
-          <h2>See the <em>work.</em></h2>
+          <h2>Photos, plots & <em>demo.</em></h2>
           <p class="detail-subheading">Real outputs are marked as such. Illustrations explain the concept and are not presented as project photographs.</p>
-          <div class="evidence-grid"><figure class="evidence-item"><a href="../../assets/media/kinectfusion-confidence.png" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/kinectfusion-confidence.png" alt="Confidence-related evaluation plot committed with the project source." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Project repository · Evaluation plot</strong><span>Confidence-related evaluation plot committed with the project source.</span></figcaption></figure><figure class="evidence-item"><a href="../../assets/project-kinectfusion.svg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/project-kinectfusion.svg" alt="Conceptual dense scene visualization (not an experimental reconstruction)." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Illustration · Geometry</strong><span>Conceptual dense scene visualization (not an experimental reconstruction).</span></figcaption></figure></div>
-          <div class="photo-request"><span class="photo-icon">▧</span><div><strong>More project photos & demo frames welcome</strong><p>Add before/after point-cloud reconstructions, a TUM RGB-D scene render and screenshots comparing ICP-only versus warm-start tracking.</p><small>Existing charts are authentic; other artwork is explicitly labeled as illustrative.</small></div></div>
+          <div class="evidence-grid"><figure class="evidence-item"><a href="../../assets/media/kinect-baseline.jpg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/kinect-baseline.jpg" alt="Fragmented 3D reconstruction from the baseline KinectFusion pipeline. Source: CV project presentation, Results &amp; Visualizations (slide 8)." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Report figure · Baseline</strong><span>Fragmented 3D reconstruction from the baseline KinectFusion pipeline. Source: CV project presentation, Results &amp; Visualizations (slide 8).</span></figcaption></figure><figure class="evidence-item"><a href="../../assets/media/kinect-reconstruction.jpg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/kinect-reconstruction.jpg" alt="Reconstruction from the enhanced pipeline, showing a more coherent room scene. Source: CV project presentation (slide 8)." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Report figure · Enhanced result</strong><span>Reconstruction from the enhanced pipeline, showing a more coherent room scene. Source: CV project presentation (slide 8).</span></figcaption></figure><figure class="evidence-item evidence-wide"><a href="../../assets/media/kinect-comparison.png" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/kinect-comparison.png" alt="The combined figure compares input/depth processing and the baseline (lower left) with the enhanced reconstruction (lower right). Source: interim report, Figure 3 (page 4)." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Project report · Qualitative comparison</strong><span>The combined figure compares input/depth processing and the baseline (lower left) with the enhanced reconstruction (lower right). Source: interim report, Figure 3 (page 4).</span></figcaption></figure><figure class="evidence-item evidence-wide evidence-diagram"><a href="../../assets/media/kinect-baseline-architecture.png" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/kinect-baseline-architecture.png" alt="The original KinectFusion flow: filtered depth, ICP tracking, TSDF fusion and raycasting. Source: interim report, Figure 1 (page 3)." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Architecture · Original KinectFusion</strong><span>The original KinectFusion flow: filtered depth, ICP tracking, TSDF fusion and raycasting. Source: interim report, Figure 1 (page 3).</span></figcaption></figure><figure class="evidence-item evidence-wide evidence-diagram"><a href="../../assets/media/kinect-enhanced-architecture.png" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/kinect-enhanced-architecture.png" alt="The team’s expanded pipeline with depth completion, feature-guided tracking, loop closure and semantic fusion. Source: interim report, Figure 2 (page 3)." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Architecture · Enhanced pipeline</strong><span>The team’s expanded pipeline with depth completion, feature-guided tracking, loop closure and semantic fusion. Source: interim report, Figure 2 (page 3).</span></figcaption></figure><figure class="evidence-item evidence-wide"><a href="../../assets/media/kinect-scenes.jpg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/kinect-scenes.jpg" alt="Additional reconstruction examples from the project presentation, Results &amp; Visualizations (slide 9)." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Project presentation · Additional scenes</strong><span>Additional reconstruction examples from the project presentation, Results &amp; Visualizations (slide 9).</span></figcaption></figure><figure class="evidence-item evidence-wide"><a href="../../assets/media/kinectfusion-confidence.png" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/kinectfusion-confidence.png" alt="Confidence-related evaluation plot committed with the project source." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Project repository · Evaluation plot</strong><span>Confidence-related evaluation plot committed with the project source.</span></figcaption></figure></div>
+          
           
           <div class="demo-note"><span class="eyebrow">DEMO STATUS</span><p>The source repository includes runnable KinectFusion examples. A personal screen recording or reconstruction video can be added to this page.</p></div>
         </section>
+        
         <section class="detail-section" id="results">
           <span class="detail-section-index">06 / OUTCOMES</span>
-          <h2>What came <em>out of it.</em></h2>
+          <h2>Results & <em>takeaways.</em></h2>
           <div class="detail-stats"><div><strong>1.20 → 0.27 m</strong><span>Reported reconstruction RMSE on TUM RGB-D</span></div><div><strong>RGB-D</strong><span>TSDF fusion with visual + geometric tracking</span></div><div><strong>3DGS</strong><span>Additional reconstruction visualization explored</span></div></div>
           <blockquote class="detail-takeaway">“Good reconstruction starts with trustworthy pose estimation; more fused frames are not always better if their poses are wrong.”</blockquote>
-          <p class="detail-disclaimer">The RMSE is a reported project figure from the resume; this site does not independently rerun the benchmark. The illustration is not ground-truth reconstruction output.</p>
+          <p class="detail-disclaimer">The RMSE is a reported project figure from the resume; this site does not independently rerun the benchmark. Figures are drawn from the team presentation and interim report. The enhanced architecture describes the team pipeline, not solely my individual implementation.</p>
+          
         </section>
         <div class="detail-links"><h3>Explore further</h3><div><a class="button button-dark" href="https://github.com/ayushk-1801/CV-Project-KinectFusion" target="_blank" rel="noopener noreferrer">View project code <span aria-hidden="true">↗</span></a></div></div>
       </div>
@@ -100,7 +107,7 @@
 
     <section class="other-projects"><div class="container"><div class="other-heading"><span class="eyebrow">KEEP EXPLORING</span><h2>More <em>engineering stories.</em></h2></div><div class="related-projects"><a class="related-card" href="../autonomous-golf-cart/index.html"><span class="detail-tiny-label">AUTONOMOUS SYSTEMS / LOCALIZATION</span><h3>Autonomous golf cart localization</h3><span class="related-arrow">Read case study ↗</span></a><a class="related-card" href="../vision-guided-arm/index.html"><span class="detail-tiny-label">ROBOTICS / VISION-GUIDED MANIPULATION</span><h3>Vision-guided robotic arm</h3><span class="related-arrow">Read case study ↗</span></a><a class="related-card" href="../edgefusion/index.html"><span class="detail-tiny-label">EDGE AI / DISTRIBUTED TRACKING</span><h3>EdgeFusion multi-camera tracking</h3><span class="related-arrow">Read case study ↗</span></a></div><div class="project-pagination"><a href="../autonomous-golf-cart/index.html">← Previous project</a><a href="../vision-guided-arm/index.html">Next project →</a></div></div></section>
   </main>
-  <footer class="site-footer"><div class="container footer-inner"><a class="footer-wordmark" href="../../index.html">ayush<span>.</span></a><p>Robotics, vision, systems, and real-world iteration.</p><div class="footer-links"><a href="../../index.html#projects">Projects ↗</a><a href="mailto:ayush23160@iiitd.ac.in">Email ↗</a><a href="#top">Back to top ↑</a></div><span class="copyright">© <span id="year">2026</span> Ayush Kitnawat</span></div></footer>
+  <footer class="site-footer"><div class="container footer-inner"><a class="footer-wordmark" href="../../index.html">Ayush Kitnawat<span>.</span></a><p>Robotics, vision, systems, and real-world iteration.</p><div class="footer-links"><a href="../../index.html#projects">Projects ↗</a><a href="mailto:ayush23160@iiitd.ac.in">Email ↗</a><a href="#top">Back to top ↑</a></div><span class="copyright">© <span id="year">2026</span> Ayush Kitnawat</span></div></footer>
 </div>
 <script defer src="../../main.js"></script>
 </body></html>

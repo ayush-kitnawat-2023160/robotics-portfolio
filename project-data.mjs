@@ -9,7 +9,10 @@ export const projects = [
     date: 'Jan 2026 — ongoing', affiliation: 'IIIT Delhi Vision Lab',
     role: 'Research intern · localization benchmarking, sensor analysis & mapping',
     hero: '../../assets/media/golfcart-map.png', heroAlt: 'Actual offline odometry and keyframe overview from a campus recording', heroCaption: 'OFFLINE EXPERIMENT / ODOMETRY KEYFRAME OVERVIEW',
-    intro: 'An autonomous vehicle needs both a smooth local estimate of movement and a reliable answer to where it is on a previously built map. My work evaluates localization from LiDAR, cameras, IMU and GPS, investigates failure cases, and develops the pieces of a more resilient localization stack for an autonomous golf cart on campus roads.',
+    intro: 'A research project to help an autonomous campus golf cart estimate its position reliably, even when individual sensors become less dependable.',
+    businessProblem: 'A self-driving golf cart must know where it is before it can plan a safe route. On campus, trees, buildings, pedestrians and changing light can cause localization to drift or fail. An incorrect position could lead to unsafe decisions.',
+    projectGoal: 'Build and evaluate a localization system that combines short-term motion estimates with position checks against a campus map, while detecting when its estimate should not be trusted.',
+    practicalValue: 'More dependable localization is a foundation for campus autonomy. This work is still being validated on recorded sensor data; it is not presented as an approved autonomous-driving safety system.',
     scope: 'Real-sensor recordings and ROS-based experiments; offline and shadow-mode engineering, not a claim of validated autonomous fallback driving.',
     contribution: [
       'Compared LVI-SAM, FAST-LIO2, FAST-LIVO2, ORB-SLAM3 and related sensor pipelines for trajectory drift, robustness and recovery behavior.',
@@ -51,8 +54,11 @@ export const projects = [
     title:'Enhanced KinectFusion', short:'Recovering a stable 3D scene when RGB-D tracking and geometry become noisy.',
     date:'Jan — Apr 2026', affiliation:'Computer vision project · team of four',
     role:'RGB-D tracking, feature-based pose initialization & reconstruction evaluation',
-    hero:'../../assets/project-kinectfusion.svg',heroAlt:'Original illustrative point-cloud artwork representing the reconstruction pipeline',heroCaption:'ILLUSTRATION / 3D RECONSTRUCTION',
-    intro:'KinectFusion integrates RGB-D measurements into a volumetric TSDF model. This project explored improving the front-end pose estimate and the quality of the fused reconstruction by combining learned visual correspondences, geometric alignment and confidence-based frame acceptance.',
+    hero:'../../assets/media/kinect-reconstruction.jpg',heroAlt:'Actual 3D reconstruction of an indoor scene from the KinectFusion project slides',heroCaption:'REAL PROJECT RESULT / ENHANCED 3D RECONSTRUCTION',
+    intro:'A 3D reconstruction project focused on creating more consistent models from a moving RGB-D camera.',
+    businessProblem:'3D scans are useful for digital twins, inspection and robot mapping, but camera-motion errors and noisy depth can produce broken or distorted models. A reconstruction pipeline must estimate camera movement accurately before combining frames.',
+    projectGoal:'Improve the KinectFusion pipeline using visual feature matching to initialize camera motion, ICP to refine alignment, and confidence checks to reduce the influence of unreliable frames.',
+    practicalValue:'A more stable reconstruction pipeline can reduce manual cleanup and make camera-based scene capture more useful. Our reported TUM RGB-D reconstruction RMSE decreased from 1.20 m to 0.27 m.',
     scope:'TUM RGB-D benchmark evaluation and project experiments.',
     contribution:[
       'Integrated SuperPoint/LightGlue feature correspondences with PnP to give geometric tracking a better initial camera pose.',
@@ -74,21 +80,28 @@ export const projects = [
     outcomes:[{big:'1.20 → 0.27 m',small:'Reported reconstruction RMSE on TUM RGB-D'},{big:'RGB-D',small:'TSDF fusion with visual + geometric tracking'},{big:'3DGS',small:'Additional reconstruction visualization explored'}],
     takeaway:'Good reconstruction starts with trustworthy pose estimation; more fused frames are not always better if their poses are wrong.',
     media:[
-      {src:'../../assets/media/kinectfusion-confidence.png',label:'Project repository · Evaluation plot',caption:'Confidence-related evaluation plot committed with the project source.',type:'real'},
-      {src:'../../assets/project-kinectfusion.svg',label:'Illustration · Geometry',caption:'Conceptual dense scene visualization (not an experimental reconstruction).',type:'illustration'}
+      {src:'../../assets/media/kinect-baseline.jpg',label:'Report figure · Baseline',caption:'Fragmented 3D reconstruction from the baseline KinectFusion pipeline. Source: CV project presentation, Results & Visualizations (slide 8).',type:'real'},
+      {src:'../../assets/media/kinect-reconstruction.jpg',label:'Report figure · Enhanced result',caption:'Reconstruction from the enhanced pipeline, showing a more coherent room scene. Source: CV project presentation (slide 8).',type:'real'},
+      {src:'../../assets/media/kinect-comparison.png',label:'Project report · Qualitative comparison',caption:'The combined figure compares input/depth processing and the baseline (lower left) with the enhanced reconstruction (lower right). Source: interim report, Figure 3 (page 4).',type:'real',wide:true},
+      {src:'../../assets/media/kinect-baseline-architecture.png',label:'Architecture · Original KinectFusion',caption:'The original KinectFusion flow: filtered depth, ICP tracking, TSDF fusion and raycasting. Source: interim report, Figure 1 (page 3).',type:'real',wide:true,diagram:true},
+      {src:'../../assets/media/kinect-enhanced-architecture.png',label:'Architecture · Enhanced pipeline',caption:'The team’s expanded pipeline with depth completion, feature-guided tracking, loop closure and semantic fusion. Source: interim report, Figure 2 (page 3).',type:'real',wide:true,diagram:true},
+      {src:'../../assets/media/kinect-scenes.jpg',label:'Project presentation · Additional scenes',caption:'Additional reconstruction examples from the project presentation, Results & Visualizations (slide 9).',type:'real',wide:true},
+      {src:'../../assets/media/kinectfusion-confidence.png',label:'Project repository · Evaluation plot',caption:'Confidence-related evaluation plot committed with the project source.',type:'real',wide:true}
     ],
     links:[{text:'View project code',url:'https://github.com/ayushk-1801/CV-Project-KinectFusion',kind:'code'}],
-    photoSuggestion:'Add before/after point-cloud reconstructions, a TUM RGB-D scene render and screenshots comparing ICP-only versus warm-start tracking.',
     demoNote:'The source repository includes runnable KinectFusion examples. A personal screen recording or reconstruction video can be added to this page.',
-    disclaimer:'The RMSE is a reported project figure from the resume; this site does not independently rerun the benchmark. The illustration is not ground-truth reconstruction output.'
+    disclaimer:'The RMSE is a reported project figure from the resume; this site does not independently rerun the benchmark. Figures are drawn from the team presentation and interim report. The enhanced architecture describes the team pipeline, not solely my individual implementation.'
   },
   {
     slug:'vision-guided-arm',number:'03',label:'ROBOTICS / VISION-GUIDED MANIPULATION',
     title:'Vision-guided robotic arm',short:'Taking an object detected by a camera and turning it into a reachable robot target.',
     date:'Feb — May 2026',affiliation:'Robotics project · team of eight',
     role:'Camera calibration, marker-based localization & camera-to-robot transformations',
-    hero:'../../assets/media/arm-demo-thumbnail.jpg',heroAlt:'Real robotic arm hardware and calibration markers visible in the project demonstration',heroCaption:'REAL PROJECT DEMO / ROBOT SETUP',
-    intro:'A camera knows where an object appears in its own coordinate frame; the arm needs a target in robot-base coordinates. This project connected visual detection, calibrated transforms and robot API commands in a vision-guided manipulation workflow.',
+    hero:'../../assets/media/arm-system-overview.jpg',heroAlt:'Real robotic arm, camera and laptop from the downloaded project video',heroCaption:'REAL PROJECT VIDEO FRAME / ROBOTIC ARM',
+    intro:'A robotic manipulation project that connects what a camera sees to where a real robot arm moves.',
+    businessProblem:'In repetitive sorting and pick-and-place tasks, objects may not always be at fixed positions. A robot cannot act on a camera detection directly because the camera and arm use different coordinate systems.',
+    projectGoal:'Use camera calibration and marker-based pose estimation to locate targets, convert their positions into the robot base frame, and send suitable motion commands to an xArm.',
+    practicalValue:'The approach allows a robot to respond to visually located targets rather than relying only on hard-coded positions. The linked team demonstration shows the physical setup.',
     scope:'xArm robotic hardware + camera calibration and ArUco-based observations.',
     contribution:[
       'Calibrated the camera and worked on estimating marker/object pose using OpenCV and ArUco fiducials.',
@@ -109,52 +122,81 @@ export const projects = [
     ],
     outcomes:[{big:'6-DoF',small:'Camera-to-robot pose transformation'},{big:'ArUco',small:'Marker-referenced object localization'},{big:'xArm',small:'Robot API integration'}],
     takeaway:'A working robotics pipeline lives or dies by calibration and frame conventions, not by detection accuracy alone.',
-    media:[{src:'../../assets/media/arm-demo-thumbnail.jpg',label:'Real demo · Robot hardware',caption:'Actual team-demo thumbnail showing the robotic arm, camera and marked workspace.',type:'real'},{src:'../../assets/project-arm.svg',label:'Illustration · System concept',caption:'The camera, marker and manipulator relationship — conceptual artwork.',type:'illustration'}],
-    photoSuggestion:'Add higher-resolution photos of the arm and camera calibration setup, a close-up marker view and a successful pick-and-place run.',
-    links:[{text:'View team repository',url:'https://github.com/vermavinay982/Autonomous-Object-Perception-Manipulation',kind:'code'},{text:'Watch project demo',url:'https://drive.google.com/file/d/1_gH-eMLU9dsza4KSZNG2K8226SaciRYQ/view?usp=sharing',kind:'demo'}],
-    demoNote:'There is a recorded project demo — use the Watch project demo button to see the real setup.',
+    media:[
+      {src:'../../assets/media/arm-system-overview.jpg',label:'Video frame · Full setup',caption:'The robotic arm, fixed camera, laptop interface and marked workspace during a recorded test.',type:'real'},
+      {src:'../../assets/media/arm-object-interaction.jpg',label:'Video frame · Positioning',caption:'Arm positioned above the marked tabletop during an object-manipulation sequence.',type:'real'},
+      {src:'../../assets/media/arm-vision-monitor.jpg',label:'Video frame · Perception interface',caption:'The laptop shows a camera view with detected workspace objects and the physical arm beside it.',type:'real'},
+      {src:'../../assets/media/arm-test-run.jpg',label:'Video frame · Hardware run',caption:'Another recorded robot pose during a live demonstration.',type:'real'}
+    ],
+    links:[{text:'View team repository',url:'https://github.com/vermavinay982/Autonomous-Object-Perception-Manipulation',kind:'code'},{text:'Google Drive demo backup',url:'https://drive.google.com/file/d/1_gH-eMLU9dsza4KSZNG2K8226SaciRYQ/view?usp=sharing',kind:'demo'}],
+    demoNote:'The full project video is playable directly on this page. A Google Drive backup is also linked.',
     disclaimer:'The linked team repository contains a broader sorting system. The personal contributions described here are limited to the calibration, transformations and arm-control work stated in the resume.'
   },
   {
     slug:'edgefusion',number:'04',label:'EDGE AI / DISTRIBUTED TRACKING',
-    title:'EdgeFusion multi-camera tracking',short:'Running detection near cameras and transmitting useful signals instead of every video frame.',
-    date:'Aug — Nov 2025',affiliation:'IIIT Delhi IRAS HUB',
-    role:'Undergraduate researcher · edge inference and distributed tracking pipeline',
-    hero:'../../assets/project-edgefusion.svg',heroAlt:'Illustrative pipeline showing edge cameras and centralized tracking',heroCaption:'ILLUSTRATION / DISTRIBUTED PERCEPTION',
-    intro:'Streaming every camera frame to a single server wastes network bandwidth and can add latency. EdgeFusion explores a more practical architecture: run fast object detection on Jetson nodes, transfer cropped detections and metadata, then perform cross-camera tracking centrally.',
-    scope:'NVIDIA Jetson Orin Nano edge devices, multi-camera experiments.',
+    title:'EdgeFusion multi-camera tracking',short:'Deploying real-time AI detection across camera-equipped Jetson devices, with a shared tracking server.',
+    date:'Monsoon 2025',affiliation:'IIIT Delhi · Independent Project, Vision Lab',
+    role:'IP contributor · Jetson benchmarking, TensorRT deployment & distributed architecture',
+    hero:'../../assets/media/edgefusion-ip-architecture.svg',heroAlt:'Recreated system-design diagram with camera groups, Jetson edge units, router and central DeepSORT tracker',heroCaption:'SYSTEM ARCHITECTURE / RECREATED FROM MY IP REPORT',
+    intro:'My independent project investigated how multiple smart camera nodes could detect objects locally and feed a central multi-camera tracking system.',
+    businessProblem:'As camera networks grow, running object detection on every stream at one PC becomes computationally demanding. A scalable system must balance inference speed, camera count and the information exchanged between edge devices and the tracking server.',
+    projectGoal:'Deploy optimized YOLO11n and YOLOv8n detection on NVIDIA Jetson Orin Nano units; benchmark one to four simultaneous streams; design multi-camera sensing units that communicate detections and images to a central DeepSORT tracker.',
+    practicalValue:'The IP report documents how FPS changes with camera count, resolution and FP16/INT8 precision, helping size the edge hardware. It demonstrates a distributed inference pipeline, but does not provide measured bandwidth savings, end-to-end latency, or cross-camera identity accuracy.',
+    scope:'Independent Project · 2025 · NVIDIA Jetson Orin Nano, FLIR Firefly USB3 cameras, Spinnaker SDK/PySpin, YOLO11n & YOLOv8n, TensorRT, ZeroMQ, central DeepSORT.',
     contribution:[
-      'Optimized YOLO11n/YOLOv8n inference on Jetson hardware with TensorRT FP16/INT8 acceleration.',
-      'Designed a ZeroMQ pipeline for sending object crops and metadata instead of full video streams.',
-      'Integrated centralized tracking with DeepSORT and cross-camera identity association.',
-      'Benchmarked inference throughput for single-camera and multi-stream operation.'
+      'Benchmarked YOLO11n and YOLOv8n on the Jetson Orin Nano across 1–4 cameras, 640×640 or 1440×1080 input, and FP16 versus INT8 TensorRT precision.',
+      'Deployed and tested optimized YOLO detection on Jetson edge hardware, including its camera input and frame-processing pipeline.',
+      'Helped design distributed sensing units (three cameras plus one Jetson in the report’s proposed unit) with a central tracking PC and high-speed network connection.',
+      'Worked on the edge-to-server data pipeline: detection boxes/classes/confidences, encoded full frames and object crops serialized into JSON, then published using ZeroMQ PUSH.'
     ],
     pipeline:[
-      {title:'At each camera',body:'Capture frames and run optimized object detection locally on Jetson.'},
-      {title:'Compress the signal',body:'Extract detection crops, labels and metadata rather than raw full-resolution video.'},
-      {title:'Transmit',body:'Send lightweight messages through ZeroMQ to a central tracking node.'},
-      {title:'Associate',body:'Use DeepSORT and camera-level information to maintain object identities across observations.'}
+      {title:'1 · Capture',body:'FLIR Firefly USB3 cameras stream to a Jetson. Spinnaker SDK/PySpin manages acquisition, auto-exposure and white balance.'},
+      {title:'2 · Detect',body:'YOLO11n / YOLOv8n TensorRT engines run on the edge, producing boxes, class IDs and confidence values.'},
+      {title:'3 · Package & send',body:'The reported implementation Base64-encodes full frames and detection crops, combines them with metadata in JSON, then uses a ZeroMQ PUSH socket.'},
+      {title:'4 · Track centrally',body:'A central server receives the sensing-unit outputs. DeepSORT-based identity association is the tracking component described in the report.'}
     ],
     challenges:[
-      {tag:'01 / COMPUTE',title:'Full neural inference on an edge device is expensive',problem:'Jetson resource limits constrain the number of camera streams and frame rate.',response:'Applied TensorRT FP16/INT8 optimization to YOLO detectors and measured throughput instead of assuming desktop performance.',evidence:'20 FPS single-camera and 7–8 FPS multi-stream as reported in the resume.'},
-      {tag:'02 / BANDWIDTH',title:'Multi-camera video is a costly thing to move',problem:'Shipping unfiltered full video over the network increases bandwidth demand.',response:'Changed the architecture to transmit object crops and compact metadata via ZeroMQ, keeping heavier image processing near the camera.',evidence:'Distributed inference architecture implemented during IRAS HUB research.'},
-      {tag:'03 / ASSOCIATION',title:'One object appears under different cameras',problem:'Individual detections do not automatically maintain a consistent identity across time or camera boundaries.',response:'Used centralized DeepSORT-based tracking and cross-camera association to maintain object tracks beyond a single frame.',evidence:'Research pipeline implementation; identity accuracy is not claimed without an evaluation report.'}
+      {tag:'01 / REAL-TIME PERFORMANCE',title:'How many streams can one Jetson handle?',problem:'A single model may run quickly, but camera streams compete for limited device compute and memory as their count grows.',response:'I benchmarked both YOLO model variants at two resolutions and two precision settings, recording per-camera FPS for one, two, three and four concurrent streams.',evidence:'IP report, pp. 3–5: 32 model / resolution / precision / camera-count configurations and FPS plots.'},
+      {tag:'02 / EDGE MODEL DEPLOYMENT',title:'Inference speed depends on precision and input size',problem:'The practical throughput changes when the detector uses FP16 versus INT8 or processes higher-resolution images.',response:'I deployed TensorRT versions of YOLO11n and YOLOv8n and compared the resulting FPS. For YOLO11n at 640×640 with one camera, INT8 reached 20.39 FPS versus 18.92 FPS in FP16.',evidence:'IP report, p. 3, YOLO11n FPS table. These are measured configurations, not a generalized speedup claim.'},
+      {tag:'03 / DISTRIBUTED INTEGRATION',title:'Connecting camera nodes to one tracker',problem:'Each Jetson must capture images, run detection, and send records that a central server can understand across multiple camera feeds.',response:'I helped architect sensing units and a ZeroMQ PUSH/JSON exchange carrying detection metadata and encoded full frames plus crops. The central system was designed around DeepSORT.',evidence:'IP report, pp. 1–2 and 5–6. Network bandwidth, end-to-end latency and cross-camera ID metrics are not reported.'}
     ],
-    outcomes:[{big:'20 FPS',small:'Reported single-camera optimized inference'},{big:'7–8 FPS',small:'Reported multi-stream throughput'},{big:'ZeroMQ',small:'Distributed crop + metadata messaging'}],
-    takeaway:'Moving less data can matter as much as making a detector faster — especially for edge systems.',
-    media:[{src:'../../assets/project-edgefusion.svg',label:'Illustration · Architecture',caption:'Conceptual visualization of cameras, Jetson nodes and central tracking.',type:'illustration'}],
-    photoSuggestion:'Add a photo of the Jetson Orin Nano setup, multi-camera view and a cross-camera tracking screen capture.',
+    outcomes:[{big:'20.42 FPS',small:'YOLOv8n INT8 · 640×640 · one camera'},{big:'32',small:'Benchmarked configurations across two models'},{big:'1–4',small:'Concurrent camera streams in the published tables'}],
+    takeaway:'A distributed vision system needs measured throughput and a well-defined data path—not just a fast detector benchmark.',
+    media:[
+      {src:'../../assets/media/edgefusion-ip-architecture.svg',label:'Architecture · Sensing units & tracker',caption:'Recreated from my 2025 IP report (pp. 5–6): camera-connected Jetson nodes use ZeroMQ to communicate with a central tracking PC. The written design defines a three-camera sensing unit; four-camera runs were also benchmarked.',type:'real',wide:true,diagram:true},
+      {src:'../../assets/media/edgefusion-ip-benchmarks.svg',label:'Measurements · Jetson throughput',caption:'Chart redrawn from the IP report tables (pp. 3–4). Each point is the mean of the individual camera FPS entries in that configuration; it is NOT aggregate FPS across all cameras.',type:'real',wide:true,diagram:true}
+    ],
+    benchmarkRows:[
+      {model:'YOLO11n',resolution:'640 × 640',precision:'FP16',one:'18.92',four:'11.79 · 11.26 · 10.83 · 10.84'},
+      {model:'YOLO11n',resolution:'640 × 640',precision:'INT8',one:'20.39',four:'14.29 · 12.10 · 11.69 · 11.62'},
+      {model:'YOLO11n',resolution:'1440 × 1080',precision:'FP16',one:'11.83',four:'7.37 · 7.81 · 7.34 · 6.36'},
+      {model:'YOLO11n',resolution:'1440 × 1080',precision:'INT8',one:'12.55',four:'8.39 · 8.37 · 8.34 · 8.54'},
+      {model:'YOLOv8n',resolution:'640 × 640',precision:'FP16',one:'18.92',four:'11.38 · 11.20 · 10.48 · 10.61'},
+      {model:'YOLOv8n',resolution:'640 × 640',precision:'INT8',one:'20.42',four:'12.87 · 12.23 · 11.98 · 11.95'},
+      {model:'YOLOv8n',resolution:'1440 × 1080',precision:'FP16',one:'13.31',four:'7.90 · 7.72 · 7.58 · 7.66'},
+      {model:'YOLOv8n',resolution:'1440 × 1080',precision:'INT8',one:'13.72',four:'9.62 · 9.60 · 9.56 · 9.45'}
+    ],
+    nextSteps:[
+      'Move identity tracking onto Jetson nodes instead of only the central PC.',
+      'Transmit compact identity embeddings in place of cropped/full images when feasible.',
+      'Add a message broker, higher-capacity networking and a camera watchdog for larger-scale deployments.'
+    ],
+    benchmarkNote:'All figures are as recorded in my IP report (2025, pp. 3–4). Four-camera values list FPS for each of the four streams—not a combined total. The report mentions possible 7–8 camera scaling but does not include equivalent benchmark tables beyond four cameras. The report schematic depicts four cameras per Jetson while its written unit design specifies three; this illustration follows the written unit definition.',
     links:[],
-    demoNote:'An externally accessible tracking demo or repository has not been supplied. A verified video can be added without redesigning the page.',
-    disclaimer:'Frame-rate figures reflect reported research measurements under the project configuration, not a general guarantee across hardware.'
+    showExploreFurther:false,
+    demoNote:null,
+    disclaimer:'Source: “EdgeFusion Multi-Camera Tracking System,” Independent Project Report, IIIT Delhi, Monsoon 2025 (Ayush Kitnawat and Suyash Pathak, guided by Prof. Saket Anand and Prof. Sanjit Kaul). FPS describes detector throughput in specific configurations. The report does not quantify bandwidth reduction, transmission latency, re-identification accuracy or production readiness. Future-work proposals are not claimed as implemented.'
   },
   {
     slug:'rocket-avionics',number:'05',label:'EMBEDDED SYSTEMS / TELEMETRY',
     title:'Model rocketry · avionics & telemetry',short:'From onboard sensors to real-time flight data on a ground-station screen.',
     date:'Oct 2024 — Aug 2025',affiliation:'IIIT Delhi model rocket project',
     role:'Avionics & telemetry lead · embedded integration and ground-station software',
-    hero:'../../assets/hero-lidar.svg',heroAlt:'Abstract sensing system visualization used as illustrative cover art',heroCaption:'ILLUSTRATION / EMBEDDED TELEMETRY',
-    intro:'A small flight system needs an onboard computer that samples sensors, packages useful measurements, and gets those measurements to a ground station. I led avionics and telemetry development on an STM32-based model rocket system using LoRa wireless communication.',
+    hero:'../../assets/media/rocket-launch-display.jpg',heroAlt:'Actual upright model rocket displayed at an outdoor event',heroCaption:'REAL PROJECT PHOTO / MODEL ROCKET',
+    intro:'An embedded-systems project to measure and monitor a model rocket’s flight from the ground.',
+    businessProblem:'During flight and testing, a rocket cannot be connected to a laptop by a cable. The team needs live information about its altitude, orientation and system behavior to understand what is happening and investigate faults.',
+    projectGoal:'Build an STM32-based onboard sensing and telemetry system, send flight measurements over LoRa, and display the readings through a Python ground station.',
+    practicalValue:'Makes flight data visible during experiments and available for review afterward. No verified radio range or flight reliability metric is claimed here.',
     scope:'Embedded microcontroller, onboard sensing, wireless telemetry and Python ground station.',
     contribution:[
       'Designed and implemented STM32 firmware integration for flight-related sensor readings.',
@@ -175,8 +217,12 @@ export const projects = [
     ],
     outcomes:[{big:'STM32',small:'Onboard sensing and microcontroller integration'},{big:'LoRa',small:'Long-range wireless telemetry'},{big:'Python',small:'Live ground station and analysis'}],
     takeaway:'Reliable robotics also depends on the invisible engineering: synchronized measurements, understandable packets and useful diagnostics.',
-    media:[{src:'../../assets/hero-lidar.svg',label:'Illustration · Sensor system',caption:'Generic sensing artwork used until hardware photos are added.',type:'illustration'}],
-    photoSuggestion:'Add avionics PCB/wiring photos, the LoRa transmitter/receiver, and a screenshot of the ground station.',
+    media:[
+      {src:'../../assets/media/rocket-launch-display.jpg',label:'Project photo · Full rocket',caption:'The team’s model rocket on display at an outdoor event. Photo from the project collection.',type:'real'},
+      {src:'../../assets/media/rocket-launch-portrait.jpg',label:'Project photo · Rocket on stand',caption:'An upright view of the completed rocket and launch/event setup.',type:'real'},
+      {src:'../../assets/media/rocket-hardware-closeup.jpg',label:'Project photo · Rocket body',caption:'Close view of the rocket body, fins and nearby electronics at the display.',type:'real'},
+      {src:'../../assets/media/rocket-side-view.jpg',label:'Project photo · Rocket body and fins',caption:'Additional display angle showing the rocket body, fins and nearby hardware.',type:'real'}
+    ],
     links:[],
     demoNote:'Flight video and ground-station screenshots have not been supplied for public use.',
     disclaimer:'No flight range, packet-loss rate or field-performance metric is claimed without a published test.'
@@ -187,7 +233,10 @@ export const projects = [
     date:'Feb 2025',affiliation:'Individual computer vision project',
     role:'End-to-end dataset experiments, transfer learning & embedding analysis',
     hero:'../../assets/project-kinectfusion.svg',heroAlt:'Abstract feature-space artwork serving as placeholder illustration',heroCaption:'ILLUSTRATION / VISUAL REPRESENTATIONS',
-    intro:'Trained image classifiers for ten wildlife species, then studied the learned representations with pretrained DINOv2 embeddings. The work combined practical supervised classification with an exploratory look into how feature spaces separate categories.',
+    intro:'An individual computer vision project to classify wildlife images and study what the models learn.',
+    businessProblem:'Reviewing large wildlife image collections by hand takes time. Automated species recognition could support image organization and biodiversity research, but models must handle changes in lighting, background and appearance.',
+    projectGoal:'Train and compare CNN and fine-tuned ResNet-18 classifiers for ten species, then use DINOv2 features to inspect how images group in feature space.',
+    practicalValue:'A research prototype for classification and model understanding, not a deployed wildlife monitoring service. The supplied results do not establish a production accuracy figure.',
     scope:'Ten-species wildlife image dataset and repeatable training experiments.',
     contribution:[
       'Built image-classification experiments with custom CNNs and fine-tuned ResNet-18.',

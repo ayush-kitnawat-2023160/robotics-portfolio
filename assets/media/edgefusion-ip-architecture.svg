@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Recreated EdgeFusion architecture: camera groups attached to Jetson Orin Nanos, Wi-Fi router and central DeepSORT server">
+<defs><pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#2b4f40" stroke-width=".6" opacity=".4"/></pattern><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L7 4L0 8Z" fill="#a7d18a"/></marker></defs>
+<rect x="0" y="0" width="1200" height="630" rx="0" fill="#112b23" stroke="none" />
+<rect width="1200" height="630" fill="url(#grid)"/>
+<text x="45" y="60" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#f0f6ec" >EDGEFUSION / SYSTEM DESIGN</text>
+<text x="45" y="88" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#94c78f" >DISTRIBUTED OBJECT DETECTION + CENTRAL TRACKING</text>
+<text x="45" y="124" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="500" fill="#8aa59a" >RECREATED FROM THE 2025 INDEPENDENT PROJECT REPORT · DESIGN OVERVIEW</text>
+<rect x="35" y="155" width="432" height="163" rx="15" fill="#193c30" stroke="#3d6954" />
+<text x="53" y="182" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#b3dbab" >SENSING UNIT A</text>
+<text x="53" y="201" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#aac5b4" >3 × FLIR Firefly USB3 cameras</text>
+<rect x="55" y="219" width="72" height="49" rx="7" fill="#234638" stroke="#49715d" />
+<rect x="65" y="231" width="49" height="22" rx="4" fill="#143026" stroke="#a2d68b" />
+<circle cx="90" cy="242" r="8" fill="#a9d18e"/>
+<circle cx="90" cy="242" r="4" fill="#355747"/>
+<text x="91" y="288" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="500" fill="#aac5b4" text-anchor="middle">1</text>
+<path d="M127 242H335" stroke="#83ab78" stroke-width="1.1" opacity=".65"/>
+<rect x="144" y="219" width="72" height="49" rx="7" fill="#234638" stroke="#49715d" />
+<rect x="154" y="231" width="49" height="22" rx="4" fill="#143026" stroke="#a2d68b" />
+<circle cx="179" cy="242" r="8" fill="#a9d18e"/>
+<circle cx="179" cy="242" r="4" fill="#355747"/>
+<text x="180" y="288" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="500" fill="#aac5b4" text-anchor="middle">2</text>
+<path d="M216 242H335" stroke="#83ab78" stroke-width="1.1" opacity=".65"/>
+<rect x="233" y="219" width="72" height="49" rx="7" fill="#234638" stroke="#49715d" />
+<rect x="243" y="231" width="49" height="22" rx="4" fill="#143026" stroke="#a2d68b" />
+<circle cx="268" cy="242" r="8" fill="#a9d18e"/>
+<circle cx="268" cy="242" r="4" fill="#355747"/>
+<text x="269" y="288" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="500" fill="#aac5b4" text-anchor="middle">3</text>
+<path d="M305 242H335" stroke="#83ab78" stroke-width="1.1" opacity=".65"/>
+<rect x="343" y="214" width="108" height="86" rx="8" fill="#285241" stroke="#87b991" />
+<text x="397" y="235" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#eaf8e7" text-anchor="middle">JETSON</text>
+<text x="397" y="252" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#dbf0db" text-anchor="middle">ORIN NANO</text>
+<text x="397" y="271" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#badfa8" text-anchor="middle">YOLO11n</text>
+<text x="397" y="287" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="500" fill="#badfa8" text-anchor="middle">TensorRT</text>
+<rect x="35" y="339" width="432" height="163" rx="15" fill="#193c30" stroke="#3d6954" />
+<text x="53" y="366" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#b3dbab" >SENSING UNIT B</text>
+<text x="53" y="385" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#aac5b4" >3 × FLIR Firefly USB3 cameras</text>
+<rect x="55" y="403" width="72" height="49" rx="7" fill="#234638" stroke="#49715d" />
+<rect x="65" y="415" width="49" height="22" rx="4" fill="#143026" stroke="#a2d68b" />
+<circle cx="90" cy="426" r="8" fill="#a9d18e"/>
+<circle cx="90" cy="426" r="4" fill="#355747"/>
+<text x="91" y="472" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="500" fill="#aac5b4" text-anchor="middle">1</text>
+<path d="M127 426H335" stroke="#83ab78" stroke-width="1.1" opacity=".65"/>
+<rect x="144" y="403" width="72" height="49" rx="7" fill="#234638" stroke="#49715d" />
+<rect x="154" y="415" width="49" height="22" rx="4" fill="#143026" stroke="#a2d68b" />
+<circle cx="179" cy="426" r="8" fill="#a9d18e"/>
+<circle cx="179" cy="426" r="4" fill="#355747"/>
+<text x="180" y="472" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="500" fill="#aac5b4" text-anchor="middle">2</text>
+<path d="M216 426H335" stroke="#83ab78" stroke-width="1.1" opacity=".65"/>
+<rect x="233" y="403" width="72" height="49" rx="7" fill="#234638" stroke="#49715d" />
+<rect x="243" y="415" width="49" height="22" rx="4" fill="#143026" stroke="#a2d68b" />
+<circle cx="268" cy="426" r="8" fill="#a9d18e"/>
+<circle cx="268" cy="426" r="4" fill="#355747"/>
+<text x="269" y="472" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="500" fill="#aac5b4" text-anchor="middle">3</text>
+<path d="M305 426H335" stroke="#83ab78" stroke-width="1.1" opacity=".65"/>
+<rect x="343" y="398" width="108" height="86" rx="8" fill="#285241" stroke="#87b991" />
+<text x="397" y="419" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#eaf8e7" text-anchor="middle">JETSON</text>
+<text x="397" y="436" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#dbf0db" text-anchor="middle">ORIN NANO</text>
+<text x="397" y="455" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#badfa8" text-anchor="middle">YOLO11n</text>
+<text x="397" y="471" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="500" fill="#badfa8" text-anchor="middle">TensorRT</text>
+<path d="M467 239H517V330H559" stroke="#addc96" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+<path d="M467 423H517V330" stroke="#addc96" stroke-width="3" fill="none"/>
+<rect x="559" y="248" width="196" height="163" rx="14" fill="#234a39" stroke="#82b77c" />
+<text x="657" y="278" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#c1ddb2" text-anchor="middle">NETWORK</text>
+<text x="657" y="313" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#f4f9ed" text-anchor="middle">Wi-Fi 7</text>
+<text x="657" y="337" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="500" fill="#b4d0bb" text-anchor="middle">Router / BE6500</text>
+<text x="657" y="374" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#ceecba" text-anchor="middle">ZeroMQ PUSH</text>
+<path d="M755 330H824" stroke="#addc96" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+<rect x="824" y="222" width="341" height="214" rx="14" fill="#234a39" stroke="#82b77c" />
+<text x="995" y="262" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#e8f6e2" text-anchor="middle">CENTRAL TRACKING PC</text>
+<rect x="864" y="286" width="261" height="94" rx="8" fill="#122e25" stroke="#628c69" />
+<text x="995" y="314" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#b6deb0" text-anchor="middle">RECEIVE &amp; DECODE</text>
+<text x="995" y="339" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#eff5e9" text-anchor="middle">DeepSORT / identity association</text>
+<text x="995" y="363" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#a9c3b3" text-anchor="middle">Across camera observations</text>
+<text x="44" y="570" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="500" fill="#d1e8c7" >EDGE: Spinnaker/PySpin → YOLO → boxes, classes, confidence + Base64 images</text>
+<text x="44" y="594" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="500" fill="#94b99f" >SERVER: JSON packets received from each distributed sensing unit</text>
+</svg>

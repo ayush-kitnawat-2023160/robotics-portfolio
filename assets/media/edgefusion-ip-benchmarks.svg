@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="810" viewBox="0 0 1200 810" role="img" aria-label="EdgeFusion Jetson benchmark comparison. Four line charts show average per-camera FPS versus camera count for YOLO11n and YOLOv8n, at 640 by 640 and 1440 by 1080 input, each with FP16 and INT8 variants.">
+<rect x="0" y="0" width="1200" height="810" rx="0" fill="#f7faf5" stroke="none" />
+<text x="52" y="58" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#1d3b2d" >JETSON THROUGHPUT / CAMERA SCALING</text>
+<text x="52" y="86" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="500" fill="#658070" >Per-camera mean FPS (averaged across the simultaneous streams in each test)</text>
+<rect x="850" y="40" width="16" height="8" rx="0" fill="#457e6a" stroke="none" />
+<text x="876" y="49" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#294b3c" >INT8</text>
+<rect x="960" y="40" width="16" height="8" rx="0" fill="#c2974d" stroke="none" />
+<text x="986" y="49" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#294b3c" >FP16</text>
+<rect x="50" y="120" width="537" height="303" rx="10" fill="#ffffff" stroke="#dce9dc" />
+<text x="75" y="160" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#2a4934" >YOLO11n · 640 × 640</text>
+<text x="75" y="180" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#7c9988" >FPS PER CAMERA</text>
+<line x1="106" y1="370.0" x2="531" y2="370.0" stroke="#e6eee5" stroke-width="1"/>
+<text x="94" y="375.0" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">0</text>
+<line x1="106" y1="335.4" x2="531" y2="335.4" stroke="#e6eee5" stroke-width="1"/>
+<text x="94" y="340.4166666666667" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">5</text>
+<line x1="106" y1="300.8" x2="531" y2="300.8" stroke="#e6eee5" stroke-width="1"/>
+<text x="94" y="305.8333333333333" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">10</text>
+<line x1="106" y1="266.2" x2="531" y2="266.2" stroke="#e6eee5" stroke-width="1"/>
+<text x="94" y="271.25" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">15</text>
+<line x1="106" y1="231.7" x2="531" y2="231.7" stroke="#e6eee5" stroke-width="1"/>
+<text x="94" y="236.66666666666666" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">20</text>
+<text x="106.0" y="395" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">1</text>
+<text x="247.7" y="395" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">2</text>
+<text x="389.3" y="395" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">3</text>
+<text x="531.0" y="395" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">4</text>
+<polyline fill="none" stroke="#c2974d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="106.0,239.1 247.7,255.6 389.3,281.7 531.0,292.7"/>
+<circle cx="106.0" cy="239.1" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<circle cx="247.7" cy="255.6" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<circle cx="389.3" cy="281.7" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<circle cx="531.0" cy="292.7" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<text x="543.0" y="297.6716666666667" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#c2974d" >11.18</text>
+<polyline fill="none" stroke="#457e6a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="106.0,229.0 247.7,248.8 389.3,263.9 531.0,284.1"/>
+<circle cx="106.0" cy="229.0" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<circle cx="247.7" cy="248.8" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<circle cx="389.3" cy="263.9" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<circle cx="531.0" cy="284.1" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<text x="543.0" y="289.0604166666667" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#457e6a" >12.42</text>
+<text x="318.5" y="409" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="600" fill="#7b9885" text-anchor="middle">SIMULTANEOUS CAMERA STREAMS</text>
+<rect x="617" y="120" width="537" height="303" rx="10" fill="#ffffff" stroke="#dce9dc" />
+<text x="642" y="160" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#2a4934" >YOLO11n · 1440 × 1080</text>
+<text x="642" y="180" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#7c9988" >FPS PER CAMERA</text>
+<line x1="673" y1="370.0" x2="1098" y2="370.0" stroke="#e6eee5" stroke-width="1"/>
+<text x="661" y="375.0" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">0</text>
+<line x1="673" y1="335.4" x2="1098" y2="335.4" stroke="#e6eee5" stroke-width="1"/>
+<text x="661" y="340.4166666666667" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">5</text>
+<line x1="673" y1="300.8" x2="1098" y2="300.8" stroke="#e6eee5" stroke-width="1"/>
+<text x="661" y="305.8333333333333" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">10</text>
+<line x1="673" y1="266.2" x2="1098" y2="266.2" stroke="#e6eee5" stroke-width="1"/>
+<text x="661" y="271.25" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">15</text>
+<line x1="673" y1="231.7" x2="1098" y2="231.7" stroke="#e6eee5" stroke-width="1"/>
+<text x="661" y="236.66666666666666" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">20</text>
+<text x="673.0" y="395" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">1</text>
+<text x="814.7" y="395" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">2</text>
+<text x="956.3" y="395" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">3</text>
+<text x="1098.0" y="395" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">4</text>
+<polyline fill="none" stroke="#c2974d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="673.0,288.2 814.7,305.7 956.3,308.4 1098.0,320.1"/>
+<circle cx="673.0" cy="288.2" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<circle cx="814.7" cy="305.7" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<circle cx="956.3" cy="308.4" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<circle cx="1098.0" cy="320.1" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<text x="1110.0" y="325.06166666666667" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#c2974d" >7.22</text>
+<polyline fill="none" stroke="#457e6a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="673.0,283.2 814.7,291.5 956.3,303.5 1098.0,311.8"/>
+<circle cx="673.0" cy="283.2" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<circle cx="814.7" cy="291.5" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<circle cx="956.3" cy="303.5" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<circle cx="1098.0" cy="311.8" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<text x="1110.0" y="316.8308333333333" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#457e6a" >8.41</text>
+<text x="885.5" y="409" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="600" fill="#7b9885" text-anchor="middle">SIMULTANEOUS CAMERA STREAMS</text>
+<rect x="50" y="444" width="537" height="303" rx="10" fill="#ffffff" stroke="#dce9dc" />
+<text x="75" y="484" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#2a4934" >YOLOv8n · 640 × 640</text>
+<text x="75" y="504" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#7c9988" >FPS PER CAMERA</text>
+<line x1="106" y1="694.0" x2="531" y2="694.0" stroke="#e6eee5" stroke-width="1"/>
+<text x="94" y="699.0" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">0</text>
+<line x1="106" y1="659.4" x2="531" y2="659.4" stroke="#e6eee5" stroke-width="1"/>
+<text x="94" y="664.4166666666666" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">5</text>
+<line x1="106" y1="624.8" x2="531" y2="624.8" stroke="#e6eee5" stroke-width="1"/>
+<text x="94" y="629.8333333333334" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">10</text>
+<line x1="106" y1="590.2" x2="531" y2="590.2" stroke="#e6eee5" stroke-width="1"/>
+<text x="94" y="595.25" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">15</text>
+<line x1="106" y1="555.7" x2="531" y2="555.7" stroke="#e6eee5" stroke-width="1"/>
+<text x="94" y="560.6666666666666" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">20</text>
+<text x="106.0" y="719" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">1</text>
+<text x="247.7" y="719" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">2</text>
+<text x="389.3" y="719" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">3</text>
+<text x="531.0" y="719" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">4</text>
+<polyline fill="none" stroke="#c2974d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="106.0,563.1 247.7,583.0 389.3,607.0 531.0,618.5"/>
+<circle cx="106.0" cy="563.1" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<circle cx="247.7" cy="583.0" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<circle cx="389.3" cy="607.0" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<circle cx="531.0" cy="618.5" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<text x="543.0" y="623.4872916666667" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#c2974d" >10.92</text>
+<polyline fill="none" stroke="#457e6a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="106.0,552.8 247.7,578.9 389.3,593.3 531.0,609.2"/>
+<circle cx="106.0" cy="552.8" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<circle cx="247.7" cy="578.9" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<circle cx="389.3" cy="593.3" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<circle cx="531.0" cy="609.2" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<text x="543.0" y="614.2189583333334" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#457e6a" >12.26</text>
+<text x="318.5" y="733" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="600" fill="#7b9885" text-anchor="middle">SIMULTANEOUS CAMERA STREAMS</text>
+<rect x="617" y="444" width="537" height="303" rx="10" fill="#ffffff" stroke="#dce9dc" />
+<text x="642" y="484" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#2a4934" >YOLOv8n · 1440 × 1080</text>
+<text x="642" y="504" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#7c9988" >FPS PER CAMERA</text>
+<line x1="673" y1="694.0" x2="1098" y2="694.0" stroke="#e6eee5" stroke-width="1"/>
+<text x="661" y="699.0" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">0</text>
+<line x1="673" y1="659.4" x2="1098" y2="659.4" stroke="#e6eee5" stroke-width="1"/>
+<text x="661" y="664.4166666666666" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">5</text>
+<line x1="673" y1="624.8" x2="1098" y2="624.8" stroke="#e6eee5" stroke-width="1"/>
+<text x="661" y="629.8333333333334" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">10</text>
+<line x1="673" y1="590.2" x2="1098" y2="590.2" stroke="#e6eee5" stroke-width="1"/>
+<text x="661" y="595.25" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">15</text>
+<line x1="673" y1="555.7" x2="1098" y2="555.7" stroke="#e6eee5" stroke-width="1"/>
+<text x="661" y="560.6666666666666" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#7e9686" text-anchor="end">20</text>
+<text x="673.0" y="719" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">1</text>
+<text x="814.7" y="719" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">2</text>
+<text x="956.3" y="719" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">3</text>
+<text x="1098.0" y="719" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#526c5b" text-anchor="middle">4</text>
+<polyline fill="none" stroke="#c2974d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="673.0,601.9 814.7,622.1 956.3,631.8 1098.0,640.6"/>
+<circle cx="673.0" cy="601.9" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<circle cx="814.7" cy="622.1" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<circle cx="956.3" cy="631.8" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<circle cx="1098.0" cy="640.6" r="4.2" fill="#c2974d" stroke="#fff" stroke-width="2"/>
+<text x="1110.0" y="645.6379166666667" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#c2974d" >7.71</text>
+<polyline fill="none" stroke="#457e6a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="673.0,599.1 814.7,608.2 956.3,615.7 1098.0,627.9"/>
+<circle cx="673.0" cy="599.1" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<circle cx="814.7" cy="608.2" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<circle cx="956.3" cy="615.7" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<circle cx="1098.0" cy="627.9" r="4.2" fill="#457e6a" stroke="#fff" stroke-width="2"/>
+<text x="1110.0" y="632.8939583333333" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#457e6a" >9.56</text>
+<text x="885.5" y="733" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="600" fill="#7b9885" text-anchor="middle">SIMULTANEOUS CAMERA STREAMS</text>
+<rect x="50" y="780" width="1100" height="2" rx="0" fill="#b6d2bd" stroke="none" />
+<text x="52" y="801" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="600" fill="#5e8069" >SOURCE: 2025 IP REPORT, PP. 3–4  ·  TESTED 1–4 CAMERAS, NOT COMBINED THROUGHPUT</text>
+</svg>

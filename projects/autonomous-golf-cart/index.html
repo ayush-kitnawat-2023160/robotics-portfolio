@@ -12,7 +12,7 @@
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../styles.css" />
   <link rel="stylesheet" href="../../project-pages.css" />
   <title>Autonomous golf cart localization | Ayush Kitnawat</title>
@@ -22,12 +22,12 @@
 <div class="site-shell">
   <header class="site-header" id="top">
     <div class="container header-inner">
-      <a class="wordmark" href="../../index.html" aria-label="Ayush Kitnawat, homepage">ayush<span class="mark-dot">.</span><span class="wordmark-sub">kitnawat</span></a>
-      <nav class="desktop-nav" aria-label="Main navigation"><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#about">About</a></nav>
+      <a class="wordmark" href="../../index.html" aria-label="Ayush Kitnawat, homepage"><span>Ayush</span><span class="wordmark-sub">Kitnawat</span><span class="mark-dot">.</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation"><a href="../../index.html#about">About</a><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a></nav>
       <a class="header-contact" href="mailto:ayush23160@iiitd.ac.in">Let's talk <span aria-hidden="true">↗</span></a>
       <button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span></button>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#about">About</a><a href="../../index.html#contact">Contact</a></nav>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="../../index.html#about">About</a><a href="../../index.html#projects">Projects</a><a href="../../index.html#experience">Experience</a><a href="../../index.html#skills">Skills</a><a href="../../index.html#contact">Contact</a></nav>
   </header>
   <main id="main">
     <section class="detail-hero">
@@ -56,43 +56,50 @@
       <aside class="detail-rail" aria-label="On this page"><span class="eyebrow">IN THIS CASE STUDY</span><a href="#overview">01 / Overview</a><a href="#contributions">02 / My contributions</a><a href="#architecture">03 / How it works</a><a href="#problems">04 / Problems & solutions</a><a href="#evidence">05 / Media & evidence</a><a href="#results">06 / Results & learnings</a></aside>
       <div class="detail-article">
         <section class="detail-section" id="overview">
-          <span class="detail-section-index">01 / THE PROJECT</span>
-          <h2>What was this <em>about?</em></h2>
-          <p class="detail-lead">An autonomous vehicle needs both a smooth local estimate of movement and a reliable answer to where it is on a previously built map. My work evaluates localization from LiDAR, cameras, IMU and GPS, investigates failure cases, and develops the pieces of a more resilient localization stack for an autonomous golf cart on campus roads.</p>
+          <span class="detail-section-index">01 / THE BIG PICTURE</span>
+          <h2>The problem & <em>our solution.</em></h2>
+          <p class="detail-lead">A research project to help an autonomous campus golf cart estimate its position reliably, even when individual sensors become less dependable.</p>
+          <div class="problem-story">
+            <div class="problem-story-card problem-story-primary"><span class="detail-tiny-label">THE REAL-WORLD PROBLEM</span><h3>Why was this needed?</h3><p>A self-driving golf cart must know where it is before it can plan a safe route. On campus, trees, buildings, pedestrians and changing light can cause localization to drift or fail. An incorrect position could lead to unsafe decisions.</p></div>
+            <div class="problem-story-card"><span class="detail-tiny-label">THE PROJECT GOAL</span><h3>What did we set out to build?</h3><p>Build and evaluate a localization system that combines short-term motion estimates with position checks against a campus map, while detecting when its estimate should not be trusted.</p></div>
+            <div class="problem-story-card"><span class="detail-tiny-label">PRACTICAL VALUE</span><h3>Why does it matter?</h3><p>More dependable localization is a foundation for campus autonomy. This work is still being validated on recorded sensor data; it is not presented as an approved autonomous-driving safety system.</p></div>
+          </div>
           <div class="detail-scope"><span class="scope-mark">⌖</span><div><strong>Project context</strong><p>Real-sensor recordings and ROS-based experiments; offline and shadow-mode engineering, not a claim of validated autonomous fallback driving.</p></div></div>
         </section>
         <section class="detail-section" id="contributions">
           <span class="detail-section-index">02 / OWNERSHIP</span>
-          <h2>What I actually <em>worked on.</em></h2>
-          <p class="detail-subheading">My responsibilities — distinguished from everything the wider team or research project may have explored.</p>
+          <h2>What I <em>worked on.</em></h2>
+          <p class="detail-subheading">My contribution to the project, separate from the broader team's work.</p>
           <div class="contribution-list"><div class="contribution"><span>01</span><p>Compared LVI-SAM, FAST-LIO2, FAST-LIVO2, ORB-SLAM3 and related sensor pipelines for trajectory drift, robustness and recovery behavior.</p></div><div class="contribution"><span>02</span><p>Worked on synchronization, coordinate frames, map/odom separation, trajectory alignment and 3D LiDAR mapping.</p></div><div class="contribution"><span>03</span><p>Developed and tested map-referenced LiDAR localization ideas using GPS-proximal map tiles and local scan correspondence, rather than treating local odometry as global pose.</p></div><div class="contribution"><span>04</span><p>Investigated visual localization / camera odometry paths and sensor-health signals as candidates for graceful degradation when primary sensing becomes unreliable.</p></div></div>
         </section>
         <section class="detail-section" id="architecture">
           <span class="detail-section-index">03 / SYSTEM DESIGN</span>
-          <h2>How the pipeline <em>fits together.</em></h2>
+          <h2>How it <em>works.</em></h2>
           <div class="pipeline-list"><div class="pipeline-step"><span class="pipeline-count">01</span><div><h3>Observe</h3><p>Receive timestamped LiDAR scans, camera frames, inertial data and GPS in known sensor frames.</p></div></div><div class="pipeline-step"><span class="pipeline-count">02</span><div><h3>Estimate motion</h3><p>Run a LiDAR-inertial estimator such as FAST-LIVO2 for continuous local odometry.</p></div></div><div class="pipeline-step"><span class="pipeline-count">03</span><div><h3>Anchor to the map</h3><p>Use map-referenced scan matching, nearby map tiles and validation gates to estimate map-frame alignment.</p></div></div><div class="pipeline-step"><span class="pipeline-count">04</span><div><h3>Check confidence</h3><p>Compare sensor health, pose freshness and consistency before trusting corrections or proposing fallback behavior.</p></div></div></div>
         </section>
         <section class="detail-section" id="problems">
           <span class="detail-section-index">04 / THE ENGINEERING</span>
-          <h2>The problems & <em>how I approached them.</em></h2>
-          <p class="detail-subheading">The interesting part isn't just a working screenshot; it's the decisions behind the implementation.</p>
+          <h2>Challenges & <em>what I did.</em></h2>
+          <p class="detail-subheading">What made the project difficult, and the choices I made while working through it.</p>
           <div class="challenge-list"><article class="challenge-card"><span class="detail-tiny-label">01 / SENSOR REALITY</span><h3>A sensor works — until conditions change</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>Visual tracking can degrade in low light, under bridges or when the camera sees mostly repetitive road texture; LiDAR-inertial estimates may also drift or deteriorate.</p></div><div><span class="challenge-label">MY APPROACH</span><p>I compared algorithms on the same recordings, inspected drift and failure sequences, and separated short-term odometry quality from long-term map localization. The aim is to detect failure rather than quietly accept a bad pose.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> Comparative trajectory and visual/LiDAR diagnostic plots below.</p></article><article class="challenge-card"><span class="detail-tiny-label">02 / GEOMETRY</span><h3>Frames and map assumptions can invalidate good estimates</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>A different LiDAR mounting orientation or an incorrect transform can make old maps and new scans inconsistent. A delayed pose update can produce a similar visible mismatch.</p></div><div><span class="challenge-label">MY APPROACH</span><p>I checked extrinsic conventions, transforms and timing separately, and treated mounting changes and delayed updates as distinct causes to be diagnosed — not one catch-all explanation.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> Transformation/calibration checks and timed pose diagnostics in the research workspace.</p></article><article class="challenge-card"><span class="detail-tiny-label">03 / RECOVERY</span><h3>Continuous odometry is not global localization</h3><div class="challenge-contrast"><div><span class="challenge-label">THE PROBLEM</span><p>A vehicle can keep moving smoothly in odom while losing reliable alignment to the campus map.</p></div><div><span class="challenge-label">MY APPROACH</span><p>I worked with a local-odometry plus map-relocalization separation: GPS narrows candidate map tiles, then scan correspondences provide candidate map alignment subject to geometric validation.</p></div></div><p class="challenge-proof"><strong>Evidence / boundary:</strong> Recorded map overview and trajectory overlays; ongoing validation before vehicle control.</p></article></div>
         </section>
         <section class="detail-section" id="evidence">
           <span class="detail-section-index">05 / FROM THE WORKBENCH</span>
-          <h2>See the <em>work.</em></h2>
+          <h2>Photos, plots & <em>demo.</em></h2>
           <p class="detail-subheading">Real outputs are marked as such. Illustrations explain the concept and are not presented as project photographs.</p>
           <div class="evidence-grid"><figure class="evidence-item"><a href="../../assets/media/golfcart-camera-frame.jpg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/golfcart-camera-frame.jpg" alt="Recorded front-facing camera frame used during campus visual localization experiments." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Actual camera frame · Campus</strong><span>Recorded front-facing camera frame used during campus visual localization experiments.</span></figcaption></figure><figure class="evidence-item"><a href="../../assets/media/golfcart-map.png" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/golfcart-map.png" alt="Unoptimized odometry keyframes from a fresh campus run; not aligned to the Lanelet map." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Actual experiment · Keyframes</strong><span>Unoptimized odometry keyframes from a fresh campus run; not aligned to the Lanelet map.</span></figcaption></figure><figure class="evidence-item"><a href="../../assets/media/golfcart-trajectory.png" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/golfcart-trajectory.png" alt="Trajectory overlay used for LiDAR global-localization evaluation." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Actual experiment · Trajectory</strong><span>Trajectory overlay used for LiDAR global-localization evaluation.</span></figcaption></figure><figure class="evidence-item"><a href="../../assets/media/golfcart-visual-matches.jpg" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/golfcart-visual-matches.jpg" alt="Visual 2D–3D correspondences investigated for visual relocalization." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Actual experiment · Feature matching</strong><span>Visual 2D–3D correspondences investigated for visual relocalization.</span></figcaption></figure><figure class="evidence-item"><a href="../../assets/media/golfcart-visual-lidar.png" target="_blank" rel="noopener" title="Open full image"><img loading="lazy" src="../../assets/media/golfcart-visual-lidar.png" alt="Visual branch and LiDAR-referenced trajectory comparison on a recorded sequence." /><span class="evidence-expand">View full size ↗</span></a><figcaption><strong>Actual experiment · Comparison</strong><span>Visual branch and LiDAR-referenced trajectory comparison on a recorded sequence.</span></figcaption></figure></div>
           <div class="photo-request"><span class="photo-icon">▧</span><div><strong>More project photos & demo frames welcome</strong><p>Add a photo of the physical golf cart, sensor placement and an RViz screenshot with the final verified map overlay.</p><small>Existing charts are authentic; other artwork is explicitly labeled as illustrative.</small></div></div>
           
           <div class="demo-note"><span class="eyebrow">DEMO STATUS</span><p>The on-cart system and some experiments are in a private research workspace; public video footage has not been added here yet.</p></div>
         </section>
+        
         <section class="detail-section" id="results">
           <span class="detail-section-index">06 / OUTCOMES</span>
-          <h2>What came <em>out of it.</em></h2>
+          <h2>Results & <em>takeaways.</em></h2>
           <div class="detail-stats"><div><strong>5</strong><span>Core SLAM / odometry families evaluated</span></div><div><strong>ROS</strong><span>Real sensor streams and repeatable bag evaluation</span></div><div><strong>R&amp;D</strong><span>Robust fallback remains under validation</span></div></div>
           <blockquote class="detail-takeaway">“The hardest part of localization is not obtaining a pose — it is knowing when that pose is stale, inconsistent or only locally correct.”</blockquote>
           <p class="detail-disclaimer">The plotted outputs are from offline research runs. Neither these plots nor this page imply a validated production-grade LiDAR-to-camera fallback for autonomous vehicle control.</p>
+          
         </section>
         <div class="detail-links"><h3>Explore further</h3><div><a class="button button-dark" href="https://github.com/ayush-kitnawat-2023160/ALIVE_Autonomus_vehicle" target="_blank" rel="noopener noreferrer">Selected code repository <span aria-hidden="true">↗</span></a></div></div>
       </div>
@@ -100,7 +107,7 @@
 
     <section class="other-projects"><div class="container"><div class="other-heading"><span class="eyebrow">KEEP EXPLORING</span><h2>More <em>engineering stories.</em></h2></div><div class="related-projects"><a class="related-card" href="../enhanced-kinectfusion/index.html"><span class="detail-tiny-label">3D VISION / DENSE RECONSTRUCTION</span><h3>Enhanced KinectFusion</h3><span class="related-arrow">Read case study ↗</span></a><a class="related-card" href="../vision-guided-arm/index.html"><span class="detail-tiny-label">ROBOTICS / VISION-GUIDED MANIPULATION</span><h3>Vision-guided robotic arm</h3><span class="related-arrow">Read case study ↗</span></a><a class="related-card" href="../edgefusion/index.html"><span class="detail-tiny-label">EDGE AI / DISTRIBUTED TRACKING</span><h3>EdgeFusion multi-camera tracking</h3><span class="related-arrow">Read case study ↗</span></a></div><div class="project-pagination"><a href="../wildlife-classification/index.html">← Previous project</a><a href="../enhanced-kinectfusion/index.html">Next project →</a></div></div></section>
   </main>
-  <footer class="site-footer"><div class="container footer-inner"><a class="footer-wordmark" href="../../index.html">ayush<span>.</span></a><p>Robotics, vision, systems, and real-world iteration.</p><div class="footer-links"><a href="../../index.html#projects">Projects ↗</a><a href="mailto:ayush23160@iiitd.ac.in">Email ↗</a><a href="#top">Back to top ↑</a></div><span class="copyright">© <span id="year">2026</span> Ayush Kitnawat</span></div></footer>
+  <footer class="site-footer"><div class="container footer-inner"><a class="footer-wordmark" href="../../index.html">Ayush Kitnawat<span>.</span></a><p>Robotics, vision, systems, and real-world iteration.</p><div class="footer-links"><a href="../../index.html#projects">Projects ↗</a><a href="mailto:ayush23160@iiitd.ac.in">Email ↗</a><a href="#top">Back to top ↑</a></div><span class="copyright">© <span id="year">2026</span> Ayush Kitnawat</span></div></footer>
 </div>
 <script defer src="../../main.js"></script>
 </body></html>
