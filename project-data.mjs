@@ -52,7 +52,7 @@ export const projects = [
       { src: '../../assets/media/golfcart-visual-matches.jpg', label: 'Visual relocalization · Feature matching', caption: 'Actual 2D–3D correspondence diagnostics from camera-based global localization experiments.', type:'real' },
       { src: '../../assets/media/golfcart-trajectory.png', label: 'LiDAR relocalization · Trajectory checks', caption: 'Recorded trajectory and map alignment diagnostic used in ongoing global localization work.', type:'real' }
     ],
-    links: [{text:'Selected code repository',url:'https://github.com/ayush-kitnawat-2023160/ALIVE_Autonomus_vehicle', kind:'code'}],
+    links: [{text:'Selected code repository',url:'https://github.com/ayush-kitnawat/ALIVE_Autonomus_vehicle', kind:'code'}],
     showExploreFurther:false,
     demoNote:null,
     disclaimer:'The localization RMSE values come from a recorded-data comparison against a LiDAR-derived pseudo-reference rather than survey ground truth. Rain and fog are simulated sensor degradations. The Zenoh video explains the interoperability design; no bridge latency or production safety certification is claimed. Automatic visual fallback, reverse-planner stability and pose-delay issues remain under evaluation.'

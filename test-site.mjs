@@ -38,12 +38,27 @@ if (!contactMarkup.includes('contact-actions') ||
     !contactMarkup.includes('contact-brand-icon') ||
     !contactMarkup.includes('Get in touch') ||
     !contactMarkup.includes('href="mailto:ayush23160@iiitd.ac.in?subject=') ||
-    !contactMarkup.includes('class="button button-light contact-action contact-github" href="https://github.com/ayush-kitnawat-2023160"') ||
+    !contactMarkup.includes('class="button button-light contact-action contact-github" href="https://github.com/ayush-kitnawat"') ||
     !contactMarkup.includes('class="button button-light contact-action contact-linkedin" href="https://www.linkedin.com/in/ayush-kitnawat-81046b2a1/"')) {
   mistakes.push('Contact actions must show Gmail email button, GitHub link and matching LinkedIn button');
 }
 if (contactMarkup.includes('class="contact-email"') || contactMarkup.includes('class="contact-social"')) {
   mistakes.push('Old contact email text or unstyled LinkedIn link remains');
+}
+const previousUsername = ['ayush-kitnawat', '2023160'].join('-');
+if ([home, ...await Promise.all(projects.map(project =>
+  readFile(`projects/${project.slug}/index.html`, 'utf8')
+))].some(html => html.includes(`github.com/${previousUsername}`))) {
+  mistakes.push('Portfolio still links to the old GitHub username');
+}
+if (!projects.find(project => project.slug === 'autonomous-golf-cart')
+    ?.links.some(link => link.url === 'https://github.com/ayush-kitnawat/ALIVE_Autonomus_vehicle')) {
+  mistakes.push('Golf cart repository owner should match the new GitHub username');
+}
+if (!home.includes('"sameAs": ["https://github.com/ayush-kitnawat"') ||
+    !home.includes('class="text-link" href="https://github.com/ayush-kitnawat"') ||
+    !home.includes('<a href="https://github.com/ayush-kitnawat" target="_blank" rel="noopener noreferrer">GitHub ↗</a>')) {
+  mistakes.push('GitHub profile link must be updated in structured data, hero and footer');
 }
 if ((contactMarkup.match(/class="button button-light contact-action(?: contact-(?:github|linkedin))?"/g) || []).length !== 3) {
   mistakes.push('All three contact actions should use matching buttons');
