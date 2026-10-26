@@ -33,6 +33,21 @@ for (const page of pages) {
   }
 }
 const home = await readFile('index.html','utf8');
+const contactMarkup = home.match(/<section class="contact section-pad"[\s\S]*?<\/section>/)?.[0] || '';
+if (!contactMarkup.includes('contact-actions') ||
+    !contactMarkup.includes('contact-brand-icon') ||
+    !contactMarkup.includes('Get in touch') ||
+    !contactMarkup.includes('href="mailto:ayush23160@iiitd.ac.in?subject=') ||
+    !contactMarkup.includes('class="button button-light contact-action contact-github" href="https://github.com/ayush-kitnawat-2023160"') ||
+    !contactMarkup.includes('class="button button-light contact-action contact-linkedin" href="https://www.linkedin.com/in/ayush-kitnawat-81046b2a1/"')) {
+  mistakes.push('Contact actions must show Gmail email button, GitHub link and matching LinkedIn button');
+}
+if (contactMarkup.includes('class="contact-email"') || contactMarkup.includes('class="contact-social"')) {
+  mistakes.push('Old contact email text or unstyled LinkedIn link remains');
+}
+if ((contactMarkup.match(/class="button button-light contact-action(?: contact-(?:github|linkedin))?"/g) || []).length !== 3) {
+  mistakes.push('All three contact actions should use matching buttons');
+}
 if (!home.includes('id="skills"')) mistakes.push('Homepage missing Skills section');
 for (const detail of ['Curious by','THERE\'S MORE TO ME','Away from the keyboard']) {
   if (!home.includes(detail)) mistakes.push(`Homepage About section missing: ${detail}`);
@@ -78,6 +93,13 @@ if (home.includes('ONE OF MY PROJECTS') || home.includes('FIG. 001 / ROBOT PERCE
   mistakes.push('Homepage still shows the old LiDAR illustration labeling');
 }
 const armPage = await readFile('projects/vision-guided-arm/index.html', 'utf8');
+if (armPage.includes('Video frame ·') || armPage.includes('class="evidence-grid"') ||
+    armPage.includes('Real outputs are marked as such. Illustrations explain the concept')) {
+  mistakes.push('Robotic arm page still shows redundant video-frame photo gallery');
+}
+if (!armPage.includes('Watch the <em>robot in action.</em>')) {
+  mistakes.push('Robotic arm page needs a focused video demonstration heading');
+}
 const golfPage = await readFile('projects/autonomous-golf-cart/index.html','utf8');
 for (const text of ['id="evolution"', 'id="zenoh"', 'id="golf-benchmarks"', 'golfcart-early-drive.mp4', 'golfcart-latest-demo.mp4','golfcart-zenoh-bridge.mp4', 'golfcart-benchmark-clean.jpg','golfcart-benchmark-rain.jpg','golfcart-fusion-architecture.jpg','ROS1', 'ROS2','Zenoh', '0.521 m', '0.640 m', 'pseudo-ground-truth', 'reverse', 'delayed pose', 'RealSense', 'ZED X', 'TEB']) {
   if (!golfPage.toLowerCase().includes(text.toLowerCase())) mistakes.push(`Flagship golf cart case study missing: ${text}`);
@@ -154,7 +176,6 @@ if (!home.includes('Kalman-filter-based sensor fusion') || !home.includes('rocke
   mistakes.push('Homepage Model Rocketry card missing sensor fusion or case-study link');
 }
 const galleryChecks = {
-  'vision-guided-arm': ['arm-system-overview.jpg','arm-object-interaction.jpg','arm-vision-monitor.jpg'],
   'rocket-avionics': ['rocket-launch-display.jpg','rocket-launch-portrait.jpg','rocket-hardware-closeup.jpg'],
   'enhanced-kinectfusion': ['kinect-reconstruction.jpg','kinect-baseline.jpg','kinect-baseline-architecture.png','kinect-enhanced-architecture.png','kinect-comparison.png']
 };

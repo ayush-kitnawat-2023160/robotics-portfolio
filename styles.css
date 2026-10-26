@@ -250,14 +250,14 @@ h1 em { font-size: 1.065em; color: #69933e; }
 .recognition { grid-area: highlights; align-self: start; min-width: 0; }
 .about-heading .eyebrow { margin-bottom: 33px; }
 .about-copy { padding-top: 31px; }
-.about-copy > p { font-size: 16px; color: #69766d; line-height: 1.88; margin-bottom: 22px; max-width: 585px; }
+.about-copy > p { font-size: 16px; color: #52645a; line-height: 1.9; margin-bottom: 22px; max-width: 585px; }
 .about-copy strong { color: #22332a; font-weight: 700; }
 .recognition { margin-top: 44px; }
-.recognition .eyebrow { margin-bottom: 16px; color: #729568; font-size: 10px; }
+.recognition .eyebrow { margin-bottom: 16px; color: #729568; font-size: 11px; }
 .recognition > div { border-top: 1px solid #d5ded1; display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 12px; padding: 16px 0; }
-.recognition > div > span { font: 700 10px var(--display); color: #8ea687; }
-.recognition strong { font-size: 13px; font-weight: 700; }
-.recognition small { color: #839184; font-size: 11px; text-align: right; }
+.recognition > div > span { font: 700 12px var(--display); color: #71946d; }
+.recognition strong { font-size: 15px; font-weight: 700; line-height: 1.5; }
+.recognition small { color: #718375; font-size: 12px; line-height: 1.5; text-align: right; }
 
 /* About: a real introduction, not a second project summary */
 .about-aside { display: flex; gap: 18px; align-items: center; width: fit-content; margin-top: 78px; padding-top: 22px; border-top: 1px solid #cdd9cc; }
@@ -277,9 +277,10 @@ h1 em { font-size: 1.065em; color: #69933e; }
 .contact-panel > p:not(.eyebrow) { font-size: 14px; color: #abc1b1; max-width: 455px; line-height: 1.75; margin-bottom: 24px; }
 .button-light { background: #c9e7a0; color: #263a26; }
 .button-light:hover { background: #d8f1b5; }
-.contact-email { display: inline-block; margin-left: 28px; color: #c1d9c2; border-bottom: 1px solid #67856f; font-size: 12px; padding-bottom: 5px; }
-.contact-social { display: inline-block; margin-left: 25px; color: #c1d9c2; border-bottom: 1px solid #67856f; font-size: 12px; padding-bottom: 5px; }
-.contact-social:hover { color: #e4f4d0; border-color: #c9e7a0; }
+.contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 17px 22px; }
+.contact-action { display: inline-flex; align-items: center; justify-content: flex-start; gap: 11px; min-height: 54px; padding: 15px 17px; white-space: nowrap; }
+.contact-action .contact-brand-icon { display: block; flex: 0 0 auto; }
+.contact-action .contact-arrow { margin-left: 15px; }
 .contact-decoration { position: absolute; z-index: -1; right: 7%; top: 13%; width: 355px; height: 355px; transform: rotate(-25deg); pointer-events: none; }
 .contact-decoration span { position: absolute; inset: 0; border: 1px solid rgba(180,222,161,.22); border-radius: 50%; }
 .contact-decoration span:nth-child(2) { transform: rotateX(65deg); }
@@ -391,8 +392,8 @@ h1 em { font-size: 1.065em; color: #69933e; }
   .recognition small { grid-column: 2; text-align: left; }
   .contact-panel h2 { font-size: clamp(46px, 11.5vw, 60px); }
   .contact-panel { padding: 39px 25px; }
-  .contact-email { display: block; margin: 24px 0 0; width: fit-content; }
-  .contact-social { display: block; margin: 18px 0 0; width: fit-content; }
+  .contact-actions { align-items: flex-start; gap: 15px; }
+  .contact-action { flex: 0 0 auto; }
   .footer-links { gap: 16px; flex-wrap: wrap; }
   .footer-inner p { order: 4; width: 100%; }
 }
@@ -401,9 +402,6 @@ h1 em { font-size: 1.065em; color: #69933e; }
 /* Improved readability and the re-ordered introduction */
 .about { padding-top: clamp(72px, 8vw, 105px); padding-bottom: clamp(75px, 8vw, 107px); }
 .about-heading h2 { font-size: clamp(50px, 5.4vw, 76px); line-height: 1.12; }
-.about-copy > p { font-size: 16px; line-height: 1.95; }
-.about-copy > p:first-child { font-size: 18px; color: #344a3d; }
-.about-copy > p:first-child strong { color: #294931; }
 .recognition { margin-top: 36px; }
 .hero-description { font-size: 16px; }
 .section-heading .section-intro { font-size: 14px; }
@@ -414,7 +412,6 @@ h1 em { font-size: 1.065em; color: #69933e; }
   .hero-eyebrow { white-space: normal; }
   .about-grid { grid-template-areas: "heading" "copy" "highlights"; grid-template-rows: auto; row-gap: 16px; }
   .about-copy > p { font-size: 15px; }
-  .about-copy > p:first-child { font-size: 16px; }
 }
 
 /* Explicit skills section */

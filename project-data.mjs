@@ -141,12 +141,7 @@ export const projects = [
     ],
     outcomes:[{big:'2 visual cues',small:'Object color and mark presence'},{big:'4 corner tags',small:'Workspace-to-robot planar mapping'},{big:'xArm Lite6',small:'Camera-guided pick-and-place integration'}],
     takeaway:'Getting a sorting robot to work is about connecting small, understandable steps—from what the camera sees to where the gripper actually moves.',
-    media:[
-      {src:'../../assets/media/arm-system-overview.jpg',label:'Video frame · Full setup',caption:'The robotic arm, fixed camera, laptop interface and marked workspace during a recorded test.',type:'real'},
-      {src:'../../assets/media/arm-object-interaction.jpg',label:'Video frame · Positioning',caption:'Arm positioned above the marked tabletop during an object-manipulation sequence.',type:'real'},
-      {src:'../../assets/media/arm-vision-monitor.jpg',label:'Video frame · Perception interface',caption:'The laptop shows a camera view with detected workspace objects and the physical arm beside it.',type:'real'},
-      {src:'../../assets/media/arm-test-run.jpg',label:'Video frame · Hardware run',caption:'Another recorded robot pose during a live demonstration.',type:'real'}
-    ],
+    media:[],
     links:[{text:'View team repository',url:'https://github.com/vermavinay982/Autonomous-Object-Perception-Manipulation',kind:'code'},{text:'Google Drive demo backup',url:'https://drive.google.com/file/d/1_gH-eMLU9dsza4KSZNG2K8226SaciRYQ/view?usp=sharing',kind:'demo'}],
     demoNote:'The full project video is playable directly on this page. A Google Drive backup is also linked.',
     disclaimer:null
