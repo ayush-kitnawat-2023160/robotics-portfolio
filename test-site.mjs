@@ -83,11 +83,15 @@ if (home.includes('class="more-work reveal"') || home.includes('MORE EXPLORATION
 if (home.includes('./projects/wildlife-classification/index.html')) {
   mistakes.push('Wildlife Classification should remain a standalone case study, not a homepage project');
 }
-if (!home.includes('ayush-portrait-cutout.webp') || !home.includes('portrait-previews')) {
-  mistakes.push('Homepage is missing the edited personal portrait hero');
+if (!home.includes('ayush-professional-portrait.webp') || !home.includes('class="hero-art hero-photo-art"')) {
+  mistakes.push('Homepage is missing the new professional portrait');
 }
-if (home.includes('portrait-scan') || home.includes('portrait-sensor-label')) {
-  mistakes.push('Homepage still contains the experimental scan overlay');
+if (/portrait-scan|portrait-sensor-label|portrait-orbit|portrait-grid|portrait-previews|portrait-art|portrait-side-label|ayush-portrait-cutout\.webp/.test(home)) {
+  mistakes.push('Homepage portrait still contains old photo, artwork, or project overlays');
+}
+const heroPhoto = home.match(/<div class="hero-art hero-photo-art">([\s\S]*?)<\/div>/)?.[1] || '';
+if ((heroPhoto.match(/<img\b/g) || []).length !== 1 || /<(?:a|span|svg|canvas)\b/i.test(heroPhoto)) {
+  mistakes.push('Portrait hero must contain the new photo only, with no decorative elements');
 }
 if (home.includes('ONE OF MY PROJECTS') || home.includes('FIG. 001 / ROBOT PERCEPTION')) {
   mistakes.push('Homepage still shows the old LiDAR illustration labeling');

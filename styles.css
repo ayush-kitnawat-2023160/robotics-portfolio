@@ -433,76 +433,21 @@ h1 em { font-size: 1.065em; color: #69933e; }
 @media(max-width: 1100px) { .skills-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media(max-width: 760px) { .skills-grid { grid-template-columns: 1fr; } .skills-card { min-height: auto; padding: 26px; } .skills-card-head { margin-bottom: 25px; } }
 
-/* Personal portrait hero — real photo + subtle engineering visual language */
-.portrait-art {
-  isolation: isolate;
-  background: radial-gradient(ellipse at 53% 36%, #335d47 0%, #204435 38%, #102a23 83%);
+/* Use the finished studio portrait as the entire card; it already contains
+   the approved green background, so don't layer a second one behind it. */
+.hero-photo-art {
+  height: clamp(410px, 38.4vw, 485px);
+  background: #102a23;
+  box-shadow: none;
 }
-.portrait-art::after {
-  z-index: 2;
-  background: linear-gradient(180deg, rgba(11,32,23,.29), transparent 18%, transparent 53%, rgba(10,27,20,.53) 83%, rgba(10,25,19,.78));
-}
-.portrait-art > img {
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  bottom: 64px;
-  transform: translateX(-50%);
-  width: 116%;
-  max-width: none;
-  height: auto;
-  max-height: 93%;
-  object-fit: contain;
-  object-position: bottom center;
-  filter: drop-shadow(0 15px 20px rgba(3,17,12,.13));
-  pointer-events: none;
-}
-.portrait-art .art-top { z-index: 4; }
-.portrait-art .art-chip { background: rgba(13,43,29,.58); border-color: rgba(171,222,151,.46); }
-.portrait-art .art-index { color: #bbd9bd; white-space: nowrap; }
-.portrait-orbit, .portrait-grid { position: absolute; z-index: 0; pointer-events: none; }
-.portrait-orbit {
-  width: 94%; aspect-ratio: 1;
-  left: 3%; top: 4%;
-  border: 1px solid rgba(178,218,155,.22);
-  border-radius: 50%; transform: rotate(-22deg) scaleX(.83);
-}
-.portrait-orbit::before, .portrait-orbit::after { content: ''; position: absolute; border-radius: 50%; inset: 13%; border: 1px dashed rgba(183,226,165,.23); }
-.portrait-orbit::after { inset: 27%; border-style: solid; opacity: .46; }
-.portrait-grid { inset: 0; opacity: .24; background: radial-gradient(circle, rgba(185,225,160,.55) 1px, transparent 1.6px); background-size: 35px 35px; mask-image: linear-gradient(to bottom, black, transparent 92%); }
-.portrait-side-label { position: absolute; z-index: 3; right: -46px; top: 44%; transform: rotate(90deg); color: #bdd9b1; opacity: .72; font: 600 9px var(--display); letter-spacing: .23em; pointer-events: none; }
-.portrait-previews { position: absolute; z-index: 4; left: 23px; right: 23px; bottom: 23px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 11px; }
-.portrait-preview {
-  min-width: 0; display: flex; align-items: center; gap: 10px;
-  padding: 8px; background: rgba(13,34,27,.84);
-  border: 1px solid rgba(154,194,152,.37); border-radius: 7px;
-  color: #ecf5e7; backdrop-filter: blur(15px);
-  box-shadow: 0 12px 26px #0c261e45;
-  transition: transform .2s ease, border-color .2s ease, background .2s ease;
-}
-.portrait-preview:hover, .portrait-preview:focus-visible { transform: translateY(-4px); border-color: #b7e3a3; background: rgba(21,59,43,.95); }
-.portrait-preview img { width: 70px; height: 61px; border-radius: 4px; object-fit: cover; flex: 0 0 auto; }
-.portrait-preview span { display: grid; gap: 7px; min-width: 0; }
-.portrait-preview small { color: #a6c9a1; font: 600 8px var(--display); letter-spacing: .10em; }
-.portrait-preview strong { color: #f5faec; font: 600 11px var(--display); letter-spacing: -.02em; white-space: nowrap; }
-@media (max-width: 1100px) {
-  .portrait-preview { gap: 7px; padding: 6px; }
-  .portrait-preview img { width: 52px; height: 54px; }
-  .portrait-preview strong { font-size: 10px; }
+.hero-photo-art::after { content: none; }
+.hero-photo-art > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 @media (max-width: 760px) {
-  .portrait-art > img { width: 100%; max-height: 98%; bottom: 52px; }
-  .portrait-preview img { width: 68px; height: 60px; }
-}
-@media (max-width: 520px) {
-  .portrait-art > img { width: 121%; max-height: 89%; bottom: 63px; }
-  .portrait-previews { left: 12px; right: 12px; bottom: 14px; gap: 7px; }
-  .portrait-preview { padding: 5px; gap: 6px; }
-  .portrait-preview img { width: 45px; height: 45px; }
-  .portrait-preview span { gap: 5px; }
-  .portrait-preview strong { font-size: 9px; }
-  .portrait-preview small { font-size: 7px; letter-spacing: .04em; }
-  .portrait-side-label { display: none; }
-  .portrait-art .art-chip { font-size: 7px; letter-spacing: .06em; padding: 7px; }
-  .portrait-art .art-index { font-size: 7px; }
+  .hero-photo-art { height: 412px; }
 }

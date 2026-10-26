@@ -2,19 +2,15 @@
 
 Minimal static portfolio with an explicit skills matrix and **six independent project case-study pages**. Plain HTML, CSS, JavaScript and SVG; no framework or third-party build packages.
 
-The homepage introduces Ayush as a **robotics and computer vision engineer**, highlighting robotic manipulation, 3D perception, embedded AI, and autonomous systems. The original LiDAR hero illustration has been replaced with a personal portrait while actual projects remain discoverable through linked photo previews.
+The homepage now uses the completed professional portrait supplied by the user (blue shirt and green studio background). The image occupies the entire hero card, with no separate overlays or additional artwork. The processed website asset is `assets/media/ayush-professional-portrait.webp`; its source is the supplied `Professional Portrait on Green Gradient.png` in Downloads. Only the original image's pale page margins are trimmed. No synthetic edits are added during preprocessing.
 
-The homepage **hero now uses Ayush's actual portrait** (the original is in Downloads), professionally cropped/graded with the cafe background masked out. A subtle visual-geometry backdrop complements two clickable thumbnails from the real robotic-arm and KinectFusion projects. All changes to the photo are presentation edits, not synthetic facial alterations. The original photo remains untouched.
-
-The portrait hero uses its original simple dark-green gradient, faint orbit, and dot grid behind the photograph. The experimental generated robotics illustration and scanning HUD overlay have been reverted.
-
-Recreate the edited image locally, if the original Downloads photograph is still available:
+You can regenerate the optional optimized WebP locally with:
 
 ```bash
 python3 tools/prepare-portrait.py
 ```
 
-This script needs Pillow, OpenCV and NumPy; the output `assets/media/ayush-portrait-cutout.webp` is already included for visitors and deployment, so **running the script is not required** to build or use the site.
+The included WebP is sufficient for deploying the site; the source photo is not needed during a build.
 
 ## Open locally
 
