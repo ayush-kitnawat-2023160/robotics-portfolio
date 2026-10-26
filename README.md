@@ -2,7 +2,19 @@
 
 Minimal static portfolio with an explicit skills matrix and **six independent project case-study pages**. Plain HTML, CSS, JavaScript and SVG; no framework or third-party build packages.
 
-The homepage introduces Ayush as a **robotics and computer vision engineer**, highlighting robotic manipulation, 3D perception, embedded AI, and autonomous systems. The LiDAR illustration is identified as just one representative project, not the sole focus of the portfolio.
+The homepage introduces Ayush as a **robotics and computer vision engineer**, highlighting robotic manipulation, 3D perception, embedded AI, and autonomous systems. The original LiDAR hero illustration has been replaced with a personal portrait while actual projects remain discoverable through linked photo previews.
+
+The homepage **hero now uses Ayush's actual portrait** (the original is in Downloads), professionally cropped/graded with the cafe background masked out. A subtle visual-geometry backdrop complements two clickable thumbnails from the real robotic-arm and KinectFusion projects. All changes to the photo are presentation edits, not synthetic facial alterations. The original photo remains untouched.
+
+The portrait hero uses its original simple dark-green gradient, faint orbit, and dot grid behind the photograph. The experimental generated robotics illustration and scanning HUD overlay have been reverted.
+
+Recreate the edited image locally, if the original Downloads photograph is still available:
+
+```bash
+python3 tools/prepare-portrait.py
+```
+
+This script needs Pillow, OpenCV and NumPy; the output `assets/media/ayush-portrait-cutout.webp` is already included for visitors and deployment, so **running the script is not required** to build or use the site.
 
 ## Open locally
 
@@ -15,8 +27,15 @@ Open http://localhost:5173. The site includes:
 
 - Home: `index.html`
 - Homepage order: **Hero → About Me → Projects → Experience → Skills → Contact**
+- About Me features a short personal introduction that mentions non-work interests in prose, followed by professional highlights. The former four-card “Off the Clock” grid has been removed.
 - Skills: `index.html#skills`
 - Project case studies: `projects/<slug>/index.html`
+- Homepage project grid includes **Model Rocketry & Telemetry** as a full-width photo-backed card. The former “More Explorations / Beyond the screen” section is removed; Wildlife Classification still has its independent case-study page.
+- Model Rocketry case study covers STM32 sensing, **Kalman-filter-based sensor fusion for IMU drift**, LoRa telemetry and a Python ground station. Empty “Explore further” and “Demo status” placeholders are intentionally hidden for this project.
+- The **ALIVE autonomous golf cart** is the flagship case study: two full-length recordings (earlier March experiment vs October integrated navigation demo), October Zenoh ROS1↔ROS2 architecture walkthrough, SLAM benchmark results and slide-derived maps/architecture, RealSense/ZED X sensor work, LiDAR relocalization and active TEB planning issues. It distinguishes comparative pseudo-reference RMSE from true survey-ground-truth accuracy and clearly labels unfinished fallback/reverse-planning work.
+- The golf-cart gallery retains the exploratory sensor-fusion/fallback diagram alongside actual vehicle recordings and benchmark figures. The former FLOAM and slide-19 "Next Step" architecture images are not included on the website.
+- LinkedIn is linked from the homepage hero, contact section, and the footers of the homepage and all project case studies.
+- Regenerate the golf-cart media from existing original files in Downloads with `python3 tools/prepare_golfcart_media.py`. The original PPTX and videos are never modified. Optimized site media are stored in `assets/media/golfcart-*.mp4` and `golfcart-*.jpg`.
 - Real experiment images: `assets/media/`
 - Illustrative cover artwork: `assets/*.svg`
 
@@ -26,7 +45,7 @@ Open http://localhost:5173. The site includes:
 | --- | --- |
 | Golf cart localization | `projects/autonomous-golf-cart/index.html` |
 | Enhanced KinectFusion | `projects/enhanced-kinectfusion/index.html` |
-| Vision-guided robotic arm | `projects/vision-guided-arm/index.html` |
+| Vision-guided sorting robot | `projects/vision-guided-arm/index.html` |
 | EdgeFusion multi-camera tracking | `projects/edgefusion/index.html` |
 | Rocket avionics & telemetry | `projects/rocket-avionics/index.html` |
 | Wildlife classification & features | `projects/wildlife-classification/index.html` |
@@ -82,17 +101,15 @@ The `dist/` directory is complete and can be hosted on GitHub Pages, Vercel, Net
 - **KinectFusion reconstruction:** Real baseline and enhanced reconstruction screenshots extracted from `CV-project-1.pdf`, slide 8, with an additional examples panel from slide 9.
 - **KinectFusion diagrams:** Original KinectFusion (Figure 1) and enhanced team architecture (Figure 2) from `CV_Project_Internim_Report-1.pdf`, page 3; qualitative comparison (Figure 3) from page 4. Clicking a figure opens a larger version. Figures describe the **team** project and are not claimed to be individually authored.
 - **Golf cart:** The homepage uses an actual campus camera frame from the localization experiment workspace, not a stylized LiDAR illustration.
-- **EdgeFusion:** No genuine EdgeFusion setup photo was supplied, so the site uses newly redrawn **report-grounded** system architecture and benchmark illustrations, never unrelated stock imagery.
+- **EdgeFusion:** No genuine EdgeFusion setup photo was supplied, so the site uses system architecture and benchmark illustrations based on verified technical details, never unrelated stock imagery.
 
-### EdgeFusion independent project report (2025)
+### EdgeFusion system design & benchmarking
 
-The EdgeFusion page has been grounded in the uploaded `Ayush_Kitnawat_2023160_IP_report.pdf` (Independent Project, IIIT Delhi, Monsoon 2025). The report is an evidence source, **not** automatically published on this site.
-
-- **Actual role:** Jetson benchmarking, TensorRT deployment, distributed system design. The report names Ayush Kitnawat and Suyash Pathak as contributors, supervised by Prof. Saket Anand and Prof. Sanjit Kaul.
+- **Project contributions:** Jetson benchmarking, TensorRT deployment, and distributed system design, developed with project collaborators.
 - **Hardware/software:** FLIR Firefly USB3 cameras, Jetson Orin Nano, Spinnaker SDK/PySpin, YOLO11n/YOLOv8n, TensorRT FP16/INT8, ZeroMQ PUSH/JSON, centralized DeepSORT.
-- **Important correction:** The recorded implementation transmits **Base64-encoded full frames and cropped detections**, plus metadata, instead of sending cropped objects alone. Claimed bandwidth/latency improvement is a design intention, not a measured result in this report.
-- **Benchmarks:** 32 configurations across two models, two input resolutions, two precision settings and one to four cameras. The new interactive-page table retains the report's four individual per-camera FPS numbers for each four-camera configuration.
-- **Figures:** `assets/media/edgefusion-ip-architecture.svg` is redrawn from the written three-camera sensing-unit design (the report's pictorial schematic shows four cameras per unit, while its text says three). `assets/media/edgefusion-ip-benchmarks.svg` recreates charts from pages 3–4; each plotted value is the arithmetic mean of simultaneous per-camera FPS, **not aggregate throughput**.
+- **Data exchanged:** **Base64-encoded full frames and cropped detections**, plus metadata, instead of cropped objects alone. Bandwidth savings and end-to-end latency are not yet measured.
+- **Benchmarks:** 32 configurations across two models, two input resolutions, two precision settings and one to four cameras. The table retains all four individual per-camera FPS numbers for each four-camera configuration.
+- **Figures:** `assets/media/edgefusion-architecture.svg` illustrates the three-camera sensing-unit design; `assets/media/edgefusion-benchmarks.svg` compares FPS across configurations. Each plotted value is the arithmetic mean of simultaneous per-camera FPS, **not aggregate throughput**.
 - **Rebuild source figures:** `python3 tools/make_edgefusion_figures.py` (Python standard library only).
 - **Future work is separate:** Edge-side identity tracking, transmitting embeddings rather than images, message brokering, networking upgrades and watchdogs are not presented as accomplished.
 - The empty **Explore further** and **More photos welcome** placeholders remain removed specifically for EdgeFusion.

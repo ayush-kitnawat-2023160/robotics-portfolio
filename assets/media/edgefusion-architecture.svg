@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Recreated EdgeFusion architecture: camera groups attached to Jetson Orin Nanos, Wi-Fi router and central DeepSORT server">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="EdgeFusion architecture: camera groups attached to Jetson Orin Nanos, Wi-Fi router and central DeepSORT server">
 <defs><pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#2b4f40" stroke-width=".6" opacity=".4"/></pattern><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L7 4L0 8Z" fill="#a7d18a"/></marker></defs>
 <rect x="0" y="0" width="1200" height="630" rx="0" fill="#112b23" stroke="none" />
 <rect width="1200" height="630" fill="url(#grid)"/>
 <text x="45" y="60" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#f0f6ec" >EDGEFUSION / SYSTEM DESIGN</text>
 <text x="45" y="88" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#94c78f" >DISTRIBUTED OBJECT DETECTION + CENTRAL TRACKING</text>
-<text x="45" y="124" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="500" fill="#8aa59a" >RECREATED FROM THE 2025 INDEPENDENT PROJECT REPORT · DESIGN OVERVIEW</text>
+<text x="45" y="124" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="500" fill="#8aa59a" >MULTI-CAMERA PERCEPTION · EDGE INFERENCE · SYSTEM OVERVIEW</text>
 <rect x="35" y="155" width="432" height="163" rx="15" fill="#193c30" stroke="#3d6954" />
 <text x="53" y="182" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#b3dbab" >SENSING UNIT A</text>
 <text x="53" y="201" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#aac5b4" >3 × FLIR Firefly USB3 cameras</text>

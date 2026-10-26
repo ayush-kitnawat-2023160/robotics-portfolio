@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
-"""Recreate readable, scalable EdgeFusion diagrams from the 2025 IP report.
+"""Create scalable EdgeFusion system and throughput illustrations.
 
-Sources:
-  Ayush Kitnawat & Suyash Pathak, EdgeFusion Multi-Camera Tracking System,
-  IIIT Delhi Independent Project Report (Monsoon 2025).
-  Benchmarks: pp. 3–4. System description and schematic: pp. 1–2 and 5–6.
-
-These are redrawn explanatory SVGs, not photographs or new experimental runs.
+Figures describe the design and measurements of the EdgeFusion project.
+These are explanatory SVGs, not photographs or new experimental runs.
 """
 from html import escape
 from pathlib import Path
@@ -21,17 +17,16 @@ def rect(x, y, w, h, fill, stroke="none", radius=10, extra=""):
     return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{radius}" fill="{fill}" stroke="{stroke}" {extra}/>'
 
 # -------------------------------------------------------------------
-# Diagram: The report calls 3 cameras + 1 Jetson a sensing unit (p. 5).
-# The *example illustration in the report* depicts 4 per unit; this
-# redraw intentionally follows the written unit definition.
+# Architecture: Each designed sensing unit contains three cameras and
+# one Jetson. Throughput experiments also tested four simultaneous streams.
 # -------------------------------------------------------------------
-s = ['<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Recreated EdgeFusion architecture: camera groups attached to Jetson Orin Nanos, Wi-Fi router and central DeepSORT server">',
+s = ['<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="EdgeFusion architecture: camera groups attached to Jetson Orin Nanos, Wi-Fi router and central DeepSORT server">',
      '<defs><pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#2b4f40" stroke-width=".6" opacity=".4"/></pattern><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L7 4L0 8Z" fill="#a7d18a"/></marker></defs>',
      rect(0,0,1200,630,"#112b23",radius=0),
      '<rect width="1200" height="630" fill="url(#grid)"/>',
      text(45,60,"EDGEFUSION / SYSTEM DESIGN",25,"#f0f6ec",700),
      text(45,88,"DISTRIBUTED OBJECT DETECTION + CENTRAL TRACKING",13,"#94c78f",700),
-     text(45,124,"RECREATED FROM THE 2025 INDEPENDENT PROJECT REPORT · DESIGN OVERVIEW",12,"#8aa59a",500)]
+     text(45,124,"MULTI-CAMERA PERCEPTION · EDGE INFERENCE · SYSTEM OVERVIEW",12,"#8aa59a",500)]
 
 def camera(x,y,tag):
     return [
@@ -76,11 +71,11 @@ s.extend([
     text(44,594,"SERVER: JSON packets received from each distributed sensing unit",13,"#94b99f",500),
     '</svg>'
 ])
-(OUT / "edgefusion-ip-architecture.svg").write_text("\n".join(s), encoding="utf-8")
+(OUT / "edgefusion-architecture.svg").write_text("\n".join(s), encoding="utf-8")
 
 # -------------------------------------------------------------------
-# Charts: average per-camera FPS. The original tables report a separate
-# FPS number for each stream; averaging within a run is for visualization.
+# Charts: average per-camera FPS. Each configuration has individual stream
+# measurements; averaging within a run is for visualization only.
 # -------------------------------------------------------------------
 measurements = {
     ("YOLO11n","640 × 640"): {
@@ -130,8 +125,8 @@ for i,((model,resolution), precisions) in enumerate(measurements.items()):
     chart.append(text(plotx+plotw/2,yy+289,"SIMULTANEOUS CAMERA STREAMS",11,"#7b9885",600,'text-anchor="middle"'))
 chart.extend([
     rect(50,780,1100,2,"#b6d2bd",radius=0),
-    text(52,801,"SOURCE: 2025 IP REPORT, PP. 3–4  ·  TESTED 1–4 CAMERAS, NOT COMBINED THROUGHPUT",11,"#5e8069",600),
+    text(52,801,"MEASURED 1–4 CAMERAS · AVERAGE PER-CAMERA FPS, NOT COMBINED THROUGHPUT",11,"#5e8069",600),
     '</svg>'
 ])
-(OUT / "edgefusion-ip-benchmarks.svg").write_text("\n".join(chart), encoding="utf-8")
-print("Created SVG diagrams",[(p.name,p.stat().st_size) for p in OUT.glob('edgefusion-ip-*.svg')])
+(OUT / "edgefusion-benchmarks.svg").write_text("\n".join(chart), encoding="utf-8")
+print("Created SVG diagrams",[(p.name,p.stat().st_size) for p in OUT.glob('edgefusion-*.svg')])

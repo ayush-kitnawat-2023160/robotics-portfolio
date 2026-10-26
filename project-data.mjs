@@ -3,51 +3,59 @@
 export const projects = [
   {
     slug: 'autonomous-golf-cart',
-    number: '01', label: 'AUTONOMOUS SYSTEMS / LOCALIZATION',
-    title: 'Autonomous golf cart localization',
-    short: 'Making a campus vehicle understand where it is — and recognizing when its estimate cannot be trusted.',
+    number: '01', label: 'AUTONOMOUS SYSTEMS / ROBOTICS R&D',
+    title: 'ALIVE · Autonomous Golf Cart',
+    short: 'From SLAM benchmarking and global relocalization to online planning, camera integration, and ROS1 ↔ ROS2 interoperability.',
     date: 'Jan 2026 — ongoing', affiliation: 'IIIT Delhi Vision Lab',
-    role: 'Research intern · localization benchmarking, sensor analysis & mapping',
-    hero: '../../assets/media/golfcart-map.png', heroAlt: 'Actual offline odometry and keyframe overview from a campus recording', heroCaption: 'OFFLINE EXPERIMENT / ODOMETRY KEYFRAME OVERVIEW',
-    intro: 'A research project to help an autonomous campus golf cart estimate its position reliably, even when individual sensors become less dependable.',
-    businessProblem: 'A self-driving golf cart must know where it is before it can plan a safe route. On campus, trees, buildings, pedestrians and changing light can cause localization to drift or fail. An incorrect position could lead to unsafe decisions.',
-    projectGoal: 'Build and evaluate a localization system that combines short-term motion estimates with position checks against a campus map, while detecting when its estimate should not be trusted.',
-    practicalValue: 'More dependable localization is a foundation for campus autonomy. This work is still being validated on recorded sensor data; it is not presented as an approved autonomous-driving safety system.',
-    scope: 'Real-sensor recordings and ROS-based experiments; offline and shadow-mode engineering, not a claim of validated autonomous fallback driving.',
+    role: 'Research intern · localization, system integration, sensor debugging & planning',
+    hero: '../../assets/media/golfcart-latest-poster.jpg', heroAlt: 'Latest real golf-cart demonstration with localization point cloud, online path planning and vehicle camera feeds', heroCaption: 'LATEST REAL VEHICLE DEMO / LOCALIZATION · PLANNING · STEERING',
+    intro: 'I worked on the autonomous golf cart as an evolving robotics system, not just one SLAM algorithm: benchmarking localization, rebuilding map alignment, integrating cameras, bridging ROS generations and diagnosing real navigation failures.',
+    businessProblem: 'A campus autonomous vehicle must estimate its pose reliably, plan around moving obstacles, and run many software and hardware components together. Sensor drift, bad calibration, stale localization messages and brittle planners can all make a system look healthy while the vehicle behaves incorrectly.',
+    projectGoal: 'Make the existing ROS-based golf cart more robust end to end: compare localization algorithms on repeatable data, keep FAST-LIVO2 local odometry aligned with a global map, investigate camera-based recovery, modernize planning and exchange data with ROS2 systems through Zenoh.',
+    practicalValue: 'The work combines evaluation, integration and field debugging. In addition to localization research, the ROS1/ROS2 bridge allows newer ROS2-side components to interoperate with an existing ROS1 autonomy stack without rewriting it all at once. Live driving videos document progress; this is still a research vehicle, not a certified safety system.',
+    scope: 'IIIT Delhi ALIVE · VLP-16 LiDAR, IMU/GPS, RealSense & ZED X cameras, ROS1/ROS2, FAST-LIVO2, map scan-matching, TEB, RViz and Zenoh. Benchmarks and on-cart experiments have different validation levels.',
     contribution: [
-      'Compared LVI-SAM, FAST-LIO2, FAST-LIVO2, ORB-SLAM3 and related sensor pipelines for trajectory drift, robustness and recovery behavior.',
-      'Worked on synchronization, coordinate frames, map/odom separation, trajectory alignment and 3D LiDAR mapping.',
-      'Developed and tested map-referenced LiDAR localization ideas using GPS-proximal map tiles and local scan correspondence, rather than treating local odometry as global pose.',
-      'Investigated visual localization / camera odometry paths and sensor-health signals as candidates for graceful degradation when primary sensing becomes unreliable.'
+      'Benchmarked FAST-LIVO2, FAST-LIO2, LVI-SAM, FLOAM, ORB-SLAM3 and RTAB-Map using recorded trajectories and degradation tests; examined drift and failure cases instead of choosing an algorithm by a single run.',
+      'Worked on a map-referenced localization pipeline that combines FAST-LIVO2 odometry with LiDAR global relocalization and confidence checks, separating smooth local motion from map-frame alignment.',
+      'Integrated and debugged RealSense and ZED X data paths, camera extrinsics, LiDAR mount changes, timestamps and ROS frame conventions; investigated visual odometry and relocalization as fallback research.',
+      'Built ROS1 ↔ ROS2 communication using a Zenoh bridge so the legacy NUC-side localization, planning and monitoring stack can exchange information with ROS2-side vehicle components.',
+      'Participated in updating local navigation from roughly 7–8 precomputed candidate trajectories to online TEB planning and traced reverse-motion oscillation and delayed-pose behavior during tests.'
     ],
     pipeline: [
-      { title: 'Observe', body: 'Receive timestamped LiDAR scans, camera frames, inertial data and GPS in known sensor frames.' },
-      { title: 'Estimate motion', body: 'Run a LiDAR-inertial estimator such as FAST-LIVO2 for continuous local odometry.' },
-      { title: 'Anchor to the map', body: 'Use map-referenced scan matching, nearby map tiles and validation gates to estimate map-frame alignment.' },
-      { title: 'Check confidence', body: 'Compare sensor health, pose freshness and consistency before trusting corrections or proposing fallback behavior.' }
+      { title: 'Acquire & calibrate', body: 'Timestamp and transform VLP-16 scans, IMU readings and RealSense/ZED X camera feeds into a consistent ROS frame tree.' },
+      { title: 'Estimate local motion', body: 'Use FAST-LIVO2 for smooth local LiDAR–inertial–visual odometry in the odom frame.' },
+      { title: 'Relocalize globally', body: 'Match recent LiDAR structure against the campus map, validate the alignment and maintain map-to-odom correction separately from odometry.' },
+      { title: 'Monitor & investigate fallback', body: 'Check localization confidence, sensor health and pose age; evaluate camera-only recovery as research, not an authorized autonomous fallback.' },
+      { title: 'Plan online', body: 'Feed pose and obstacles to the TEB local planner, replacing selection among a small set of fixed precomputed trajectories. Continue debugging reverse behavior and timing.' },
+      { title: 'Bridge ROS generations', body: 'Use Zenoh-mediated ROS1 ↔ ROS2 data exchange between legacy compute and newer vehicle-side interfaces, avoiding an all-at-once rewrite.' }
     ],
     challenges: [
-      { tag: '01 / SENSOR REALITY', title: 'A sensor works — until conditions change', problem: 'Visual tracking can degrade in low light, under bridges or when the camera sees mostly repetitive road texture; LiDAR-inertial estimates may also drift or deteriorate.', response: 'I compared algorithms on the same recordings, inspected drift and failure sequences, and separated short-term odometry quality from long-term map localization. The aim is to detect failure rather than quietly accept a bad pose.', evidence: 'Comparative trajectory and visual/LiDAR diagnostic plots below.' },
-      { tag: '02 / GEOMETRY', title: 'Frames and map assumptions can invalidate good estimates', problem: 'A different LiDAR mounting orientation or an incorrect transform can make old maps and new scans inconsistent. A delayed pose update can produce a similar visible mismatch.', response: 'I checked extrinsic conventions, transforms and timing separately, and treated mounting changes and delayed updates as distinct causes to be diagnosed — not one catch-all explanation.', evidence: 'Transformation/calibration checks and timed pose diagnostics in the research workspace.' },
-      { tag: '03 / RECOVERY', title: 'Continuous odometry is not global localization', problem: 'A vehicle can keep moving smoothly in odom while losing reliable alignment to the campus map.', response: 'I worked with a local-odometry plus map-relocalization separation: GPS narrows candidate map tiles, then scan correspondences provide candidate map alignment subject to geometric validation.', evidence: 'Recorded map overview and trajectory overlays; ongoing validation before vehicle control.' }
+      { tag: '01 / LOCALIZATION BENCHMARKING', title: 'Which estimator actually survives bad sensing?', problem: 'A low-error path in clear weather says little about rain, fog, dropouts or poor visual texture; the E2O data also lack survey-grade ground truth.', response: 'I compared six estimation families against a LiDAR-derived pseudo-reference, stress-tested sensor perturbations and inspected trajectory overlays and recovery modes.', evidence: 'Clean FAST-LIVO2 overall RMSE: 0.521 m versus 0.640 m for FLOAM on the evaluated ALIVE sequence, relative to a pseudo-reference—not true absolute pose accuracy.' },
+      { tag: '02 / REAL SENSOR DEBUGGING', title: 'Mounts, cameras and timestamps break otherwise sound geometry', problem: 'Reorienting the LiDAR invalidates old map-frame assumptions; RealSense depth and ZED X timing/extrinsics can degrade fusion, and recording can introduce latency.', response: 'I debugged coordinate transforms, recalibration needs, camera stream behavior, message timestamps and recording delays independently, including the impact of a changed LiDAR mount.', evidence: 'ROS bag replay, frame-tree inspections, camera/IMU synchronization tests and visual-versus-LiDAR trajectory checks.' },
+      { tag: '03 / MAP ALIGNMENT', title: 'Locally smooth odometry can still be globally wrong', problem: 'FAST-LIVO2 produces relative motion, but a campus navigator also needs its correct position in a persistent map, including after drift or restart.', response: 'I separated FAST-LIVO2 odometry from global LiDAR scan-to-map relocalization and used geometric match validation before introducing map-frame corrections.', evidence: 'Campus map and scan matching experiments; live validation and safe automatic handover are separate milestones.' },
+      { tag: '04 / SOFTWARE INTEROPERABILITY', title: 'Modernizing ROS without abandoning the old stack', problem: 'The existing localization and planning stack runs on ROS1 while newer cart-side integrations use ROS2. Rewriting every node risks losing tested behavior.', response: 'I integrated data exchange through Zenoh so ROS1-side components can communicate with ROS2-side systems while retaining their native ROS runtimes.', evidence: 'The accompanying October 2026 video visualizes the ROS1 NUC ↔ Zenoh ↔ ROS2 golf-cart architecture. It is an architecture walkthrough, not a latency benchmark.' },
+      { tag: '05 / ONLINE PLANNING', title: 'The planner can get stuck in reverse / forward corrections', problem: 'Previously the cart selected the lowest-cost option from roughly 7–8 precomputed trajectories. That was less reactive. With live TEB planning, close obstacles can trigger repeated reversing and forward motion; delayed pose updates make control less predictable.', response: 'Moved toward live TEB trajectory optimization and traced the interaction among obstacle clearance, reverse permissions, stale pose timestamps and local goal selection. These remain active tuning and debugging tasks.', evidence: 'Latest driving video shows live planning; reverse oscillation and pose delay are open issues, not solved claims.' }
     ],
     outcomes: [
-      { big: '5', small: 'Core SLAM / odometry families evaluated' },
-      { big: 'ROS', small: 'Real sensor streams and repeatable bag evaluation' },
-      { big: 'R&D', small: 'Robust fallback remains under validation' }
+      { big: '6', small: 'Localization families included in the comparative evaluation' },
+      { big: '0.521 m', small: 'FAST-LIVO2 clean overall RMSE versus LiDAR pseudo-reference, ALIVE data' },
+      { big: 'ROS1 ↔ ROS2', small: 'Zenoh interoperability work across the compute/vehicle boundary' }
     ],
-    takeaway: 'The hardest part of localization is not obtaining a pose — it is knowing when that pose is stale, inconsistent or only locally correct.',
+    takeaway: 'Real autonomy is not a single algorithm. It is the calibration, timestamps, maps, software interfaces and failure cases that make every part work together.',
     media: [
-      { src: '../../assets/media/golfcart-camera-frame.jpg', label: 'Actual camera frame · Campus', caption: 'Recorded front-facing camera frame used during campus visual localization experiments.', type:'real' },
-      { src: '../../assets/media/golfcart-map.png', label: 'Actual experiment · Keyframes', caption: 'Unoptimized odometry keyframes from a fresh campus run; not aligned to the Lanelet map.', type:'real' },
-      { src: '../../assets/media/golfcart-trajectory.png', label: 'Actual experiment · Trajectory', caption: 'Trajectory overlay used for LiDAR global-localization evaluation.', type:'real' },
-      { src: '../../assets/media/golfcart-visual-matches.jpg', label: 'Actual experiment · Feature matching', caption: 'Visual 2D–3D correspondences investigated for visual relocalization.', type:'real' },
-      { src: '../../assets/media/golfcart-visual-lidar.png', label: 'Actual experiment · Comparison', caption: 'Visual branch and LiDAR-referenced trajectory comparison on a recorded sequence.', type:'real' }
+      { src: '../../assets/media/golfcart-fusion-architecture.jpg', label: 'Exploratory architecture · Sensor monitoring & fallback', caption: 'Separate conceptual fusion/switching architecture for sensor health, primary estimator selection and visual fallback. It does not imply verified automatic failover on the vehicle.', type:'real',wide:true,diagram:true },
+      { src: '../../assets/media/golfcart-latest-poster.jpg', label: 'Latest field demo · Live navigation', caption: 'Actual multi-view recording showing LiDAR localization, online planning, exterior camera and steering feedback together.', type:'real',wide:true },
+      { src: '../../assets/media/golfcart-benchmark-map.jpg', label: 'Benchmark study · Campus map and reference pipeline', caption: 'LiDAR-derived pseudo-reference, corrected trajectory and a high-level construction process from the localization benchmarking presentation. Not survey-grade ground truth.', type:'real',wide:true,diagram:true },
+      { src: '../../assets/media/golfcart-benchmark-clean.jpg', label: 'Comparison · Clean recordings', caption: 'Overall RMSE and other errors for six methods on the ALIVE dataset. Values are relative to a pseudo-reference, not absolute ground truth.', type:'real',wide:true,diagram:true },
+      { src: '../../assets/media/golfcart-benchmark-rain.jpg', label: 'Robustness · Simulated rain stress', caption: 'Sensor-perturbation comparison across methods under synthetic rain-like degradation. These are replay experiments, not certified all-weather tests.', type:'real',wide:true,diagram:true },
+      { src: '../../assets/media/golfcart-benchmark-fog.jpg', label: 'Robustness · Simulated fog stress', caption: 'Relative localization errors under synthetic fog-like sensor perturbations, with visual tracking more vulnerable to degraded camera observations.', type:'real',wide:true,diagram:true },
+      { src: '../../assets/media/golfcart-visual-matches.jpg', label: 'Visual relocalization · Feature matching', caption: 'Actual 2D–3D correspondence diagnostics from camera-based global localization experiments.', type:'real' },
+      { src: '../../assets/media/golfcart-trajectory.png', label: 'LiDAR relocalization · Trajectory checks', caption: 'Recorded trajectory and map alignment diagnostic used in ongoing global localization work.', type:'real' }
     ],
     links: [{text:'Selected code repository',url:'https://github.com/ayush-kitnawat-2023160/ALIVE_Autonomus_vehicle', kind:'code'}],
-    photoSuggestion:'Add a photo of the physical golf cart, sensor placement and an RViz screenshot with the final verified map overlay.',
-    demoNote: 'The on-cart system and some experiments are in a private research workspace; public video footage has not been added here yet.',
-    disclaimer:'The plotted outputs are from offline research runs. Neither these plots nor this page imply a validated production-grade LiDAR-to-camera fallback for autonomous vehicle control.'
+    showExploreFurther:false,
+    demoNote:null,
+    disclaimer:'The localization RMSE values come from a recorded-data comparison against a LiDAR-derived pseudo-reference rather than survey ground truth. Rain and fog are simulated sensor degradations. The Zenoh video explains the interoperability design; no bridge latency or production safety certification is claimed. Automatic visual fallback, reverse-planner stability and pose-delay issues remain under evaluation.'
   },
   {
     slug:'enhanced-kinectfusion', number:'02',label:'3D VISION / DENSE RECONSTRUCTION',
@@ -78,6 +86,16 @@ export const projects = [
       {tag:'03 / DRIFT',title:'Small pose errors become large 3D artifacts',problem:'Frame-to-frame errors propagate into TSDF fusion and can distort rooms and surfaces.',response:'Combined visual correspondences, multi-scale geometric refinement and loop-consistency experiments to constrain drift.',evidence:'Reported TUM RGB-D RMSE improvement on the project resume.'}
     ],
     outcomes:[{big:'1.20 → 0.27 m',small:'Reported reconstruction RMSE on TUM RGB-D'},{big:'RGB-D',small:'TSDF fusion with visual + geometric tracking'},{big:'3DGS',small:'Additional reconstruction visualization explored'}],
+    measuredMetrics:{
+      heading:'Measured performance',
+      context:'Final team evaluation · TUM RGB-D fr1/room for reconstruction RMSE; separate hardware and memory tests for runtime costs.',
+      cards:[
+        {value:'77.5%',label:'Lower reconstruction RMSE',detail:'Baseline 1.20 m → Enhanced 0.27 m · TUM fr1/room'},
+        {value:'12.57 GB',label:'Sparse-mode peak VRAM',detail:'Compared with 16.74 GB peak in dense mode · custom desk test'},
+        {value:'0.8 FPS',label:'Full pipeline · RTX 3090',detail:'0.6 FPS on RTX 3070 Ti · not yet real-time'}
+      ],
+      footnote:'RMSE compares the complete enhanced team pipeline with baseline KinectFusion; it does not isolate the impact of a single tracking module. VRAM was 14.36–16.74 GB in dense mode and 8.34–12.57 GB in sparse mode. FPS values were measured on different GPUs and are not a same-hardware speedup comparison.'
+    },
     takeaway:'Good reconstruction starts with trustworthy pose estimation; more fused frames are not always better if their poses are wrong.',
     media:[
       {src:'../../assets/media/kinect-baseline.jpg',label:'Report figure · Baseline',caption:'Fragmented 3D reconstruction from the baseline KinectFusion pipeline. Source: CV project presentation, Results & Visualizations (slide 8).',type:'real'},
@@ -89,39 +107,40 @@ export const projects = [
       {src:'../../assets/media/kinectfusion-confidence.png',label:'Project repository · Evaluation plot',caption:'Confidence-related evaluation plot committed with the project source.',type:'real',wide:true}
     ],
     links:[{text:'View project code',url:'https://github.com/ayushk-1801/CV-Project-KinectFusion',kind:'code'}],
-    demoNote:'The source repository includes runnable KinectFusion examples. A personal screen recording or reconstruction video can be added to this page.',
-    disclaimer:'The RMSE is a reported project figure from the resume; this site does not independently rerun the benchmark. Figures are drawn from the team presentation and interim report. The enhanced architecture describes the team pipeline, not solely my individual implementation.'
+    demoNote:null,
+    disclaimer:null
   },
   {
-    slug:'vision-guided-arm',number:'03',label:'ROBOTICS / VISION-GUIDED MANIPULATION',
-    title:'Vision-guided robotic arm',short:'Taking an object detected by a camera and turning it into a reachable robot target.',
+    slug:'vision-guided-arm',number:'03',label:'ROBOTICS / VISION-GUIDED SORTING',
+    title:'Vision-guided sorting robot',short:'Detecting tabletop objects, identifying visual attributes, and picking and placing them into bins with a real robotic arm.',
     date:'Feb — May 2026',affiliation:'Robotics project · team of eight',
-    role:'Camera calibration, marker-based localization & camera-to-robot transformations',
+    role:'Camera calibration, workspace mapping & camera-to-robot integration',
     hero:'../../assets/media/arm-system-overview.jpg',heroAlt:'Real robotic arm, camera and laptop from the downloaded project video',heroCaption:'REAL PROJECT VIDEO FRAME / ROBOTIC ARM',
-    intro:'A robotic manipulation project that connects what a camera sees to where a real robot arm moves.',
-    businessProblem:'In repetitive sorting and pick-and-place tasks, objects may not always be at fixed positions. A robot cannot act on a camera detection directly because the camera and arm use different coordinate systems.',
-    projectGoal:'Use camera calibration and marker-based pose estimation to locate targets, convert their positions into the robot base frame, and send suitable motion commands to an xArm.',
-    practicalValue:'The approach allows a robot to respond to visually located targets rather than relying only on hard-coded positions. The linked team demonstration shows the physical setup.',
-    scope:'xArm robotic hardware + camera calibration and ArUco-based observations.',
+    intro:'We built a camera-guided tabletop sorting system that detects objects, checks their visual attributes, and directs a robotic arm to pick them up and place them in the appropriate bins.',
+    businessProblem:'Manual sorting is repetitive, and the objects on a table do not always stay in fixed positions. For a robot to sort them, it has to locate each object, recognize its color and whether it has a visual mark, translate that observation into robot coordinates, and execute a reliable grasp.',
+    projectGoal:'Connect object detection and visual-attribute checks to an explicit sorting pipeline: calibrate the camera and workspace, map detected objects into robot coordinates, select a destination using defined rules, and perform top-down pick-and-place with a robotic arm.',
+    practicalValue:'The resulting pipeline connects perception with real robot actions. Instead of relying on fixed object positions, the arm uses the camera to find a target and move it to a designated bin. The recorded demo shows the real hardware in action.',
+    scope:'UFactory xArm Lite6, Intel RealSense camera, AprilTag/ArUco workspace and bin references, YOLO object detection, color/mark checks, OpenCV mapping, and Python robot control.',
     contribution:[
-      'Calibrated the camera and worked on estimating marker/object pose using OpenCV and ArUco fiducials.',
-      'Computed camera-to-robot frame transforms to express perceived object poses relative to the manipulator base.',
-      'Integrated estimated target poses with Python xArm API commands for end-effector positioning.',
-      'Participated in system tests aligning image-space observations with physical robot actions.'
+      'Worked on camera calibration and detecting workspace reference markers to establish where the table and sorting bins were in the camera view.',
+      'Computed the camera-to-robot mapping that converts detected object centers from image pixels into reachable robot-frame XY positions.',
+      'Connected mapped object and bin positions to xArm Lite6 motion commands for top-down pick, lift, move, and release sequences.',
+      'Tested the perception-to-motion integration on real hardware, checking that camera observations corresponded to physical arm targets.'
     ],
     pipeline:[
-      {title:'Observe',body:'Capture the workspace and detect ArUco markers or target objects.'},
-      {title:'Estimate',body:'Recover a 3D pose from calibrated camera geometry and marker observations.'},
-      {title:'Transform',body:'Apply camera-to-base extrinsic transforms to obtain the robot-frame target.'},
-      {title:'Act',body:'Use the xArm Python API to move toward a validated target pose.'}
+      {title:'Calibrate & map',body:'Calibrate the camera and use AprilTag/ArUco reference markers to locate the tabletop workspace and sorting bins. Build the image-to-robot mapping.'},
+      {title:'Detect & classify',body:'Detect tabletop blocks in the camera feed with YOLO. Identify their color and check for a visual mark using image-based rules.'},
+      {title:'Choose a bin',body:'Use deterministic sorting rules to select a destination bin for a detected object, keeping classification separate from robot motion.'},
+      {title:'Convert coordinates',body:'Map the object center and selected bin from image pixels into robot-frame XY coordinates using the calibrated workspace homography.'},
+      {title:'Pick & place',body:'Send xArm commands for a top-down approach, grasp, lift, move to the bin, release, and return. Handle arm-command errors with a safe recovery path.'}
     ],
     challenges:[
-      {tag:'01 / FRAMES',title:'Pixel coordinates are not robot coordinates',problem:'A pose expressed in the camera optical frame cannot be sent directly to a manipulator expecting base-frame coordinates.',response:'Calibrated camera geometry and implemented explicit homogeneous transformations from camera frame to robot base.',evidence:'The central implementation responsibility documented in the resume.'},
-      {tag:'02 / RELIABILITY',title:'Visual estimates jitter, but hardware needs stable targets',problem:'Marker visibility, depth uncertainty and calibration error affect how confidently a position can be used.',response:'Used pose estimation from known marker geometry and careful transformation checks before using target estimates in robot commands.',evidence:'Project demonstration shows the physical perception-to-action pipeline.'},
-      {tag:'03 / INTEGRATION',title:'Perception and actuation have different interfaces',problem:'Computer vision returns detections and transforms; the arm controller needs feasible target poses and explicit motion commands.',response:'Built the connection from estimated target pose to xArm API calls, keeping visual localization and actuation as separate stages.',evidence:'The demonstration and project code are linked below.'}
+      {tag:'01 / CALIBRATION',title:'A pixel location is not a grasp position',problem:'The camera returns image coordinates, but the xArm needs target positions in its own workspace. Small mapping errors can lead to missed grasps.',response:'Used camera calibration and reference markers to establish a workspace homography, converting object and bin positions from pixels to robot XY.',evidence:'The robot receives target coordinates computed from camera observations rather than hard-coded object locations.'},
+      {tag:'02 / PERCEPTION',title:'Finding the object is only half the task',problem:'The sorting task involves both object location and visual attributes. The workspace also contains reference markers used for calibration.',response:'Separated object detection, color recognition, visual-mark checks, and workspace-marker detection so each has a clear purpose in the pipeline.',evidence:'YOLO supplies block detections; image-based checks label color and mark presence; fiducial markers define the workspace and bins.'},
+      {tag:'03 / HARDWARE INTEGRATION',title:'Turning a detection into a safe pick-and-place sequence',problem:'Even with a correct detection, the arm needs a sensible approach height, gripper timing, a bin target, and a way to respond to motion errors.',response:'Connected calibrated coordinates to xArm motion and gripper commands using a top-down approach, lift, transfer, and release sequence with error recovery.',evidence:'The real-hardware video shows the perception-to-motion integration and the physical sorting workspace.'}
     ],
-    outcomes:[{big:'6-DoF',small:'Camera-to-robot pose transformation'},{big:'ArUco',small:'Marker-referenced object localization'},{big:'xArm',small:'Robot API integration'}],
-    takeaway:'A working robotics pipeline lives or dies by calibration and frame conventions, not by detection accuracy alone.',
+    outcomes:[{big:'2 visual cues',small:'Object color and mark presence'},{big:'4 corner tags',small:'Workspace-to-robot planar mapping'},{big:'xArm Lite6',small:'Camera-guided pick-and-place integration'}],
+    takeaway:'Getting a sorting robot to work is about connecting small, understandable steps—from what the camera sees to where the gripper actually moves.',
     media:[
       {src:'../../assets/media/arm-system-overview.jpg',label:'Video frame · Full setup',caption:'The robotic arm, fixed camera, laptop interface and marked workspace during a recorded test.',type:'real'},
       {src:'../../assets/media/arm-object-interaction.jpg',label:'Video frame · Positioning',caption:'Arm positioned above the marked tabletop during an object-manipulation sequence.',type:'real'},
@@ -130,41 +149,41 @@ export const projects = [
     ],
     links:[{text:'View team repository',url:'https://github.com/vermavinay982/Autonomous-Object-Perception-Manipulation',kind:'code'},{text:'Google Drive demo backup',url:'https://drive.google.com/file/d/1_gH-eMLU9dsza4KSZNG2K8226SaciRYQ/view?usp=sharing',kind:'demo'}],
     demoNote:'The full project video is playable directly on this page. A Google Drive backup is also linked.',
-    disclaimer:'The linked team repository contains a broader sorting system. The personal contributions described here are limited to the calibration, transformations and arm-control work stated in the resume.'
+    disclaimer:null
   },
   {
     slug:'edgefusion',number:'04',label:'EDGE AI / DISTRIBUTED TRACKING',
     title:'EdgeFusion multi-camera tracking',short:'Deploying real-time AI detection across camera-equipped Jetson devices, with a shared tracking server.',
     date:'Monsoon 2025',affiliation:'IIIT Delhi · Independent Project, Vision Lab',
     role:'IP contributor · Jetson benchmarking, TensorRT deployment & distributed architecture',
-    hero:'../../assets/media/edgefusion-ip-architecture.svg',heroAlt:'Recreated system-design diagram with camera groups, Jetson edge units, router and central DeepSORT tracker',heroCaption:'SYSTEM ARCHITECTURE / RECREATED FROM MY IP REPORT',
-    intro:'My independent project investigated how multiple smart camera nodes could detect objects locally and feed a central multi-camera tracking system.',
+    hero:'../../assets/media/edgefusion-architecture.svg',heroAlt:'EdgeFusion system design showing camera groups, Jetson edge units, router and central DeepSORT tracker',heroCaption:'SYSTEM ARCHITECTURE / MULTI-CAMERA TRACKING',
+    intro:'This project investigated how multiple smart camera nodes could detect objects locally and feed a central multi-camera tracking system.',
     businessProblem:'As camera networks grow, running object detection on every stream at one PC becomes computationally demanding. A scalable system must balance inference speed, camera count and the information exchanged between edge devices and the tracking server.',
     projectGoal:'Deploy optimized YOLO11n and YOLOv8n detection on NVIDIA Jetson Orin Nano units; benchmark one to four simultaneous streams; design multi-camera sensing units that communicate detections and images to a central DeepSORT tracker.',
-    practicalValue:'The IP report documents how FPS changes with camera count, resolution and FP16/INT8 precision, helping size the edge hardware. It demonstrates a distributed inference pipeline, but does not provide measured bandwidth savings, end-to-end latency, or cross-camera identity accuracy.',
+    practicalValue:'By measuring how inference speed changes with camera count, resolution, and FP16/INT8 precision, I could understand the trade-offs involved in running multiple camera streams on edge hardware. Bandwidth savings, end-to-end latency, and cross-camera identity accuracy still need separate evaluation.',
     scope:'Independent Project · 2025 · NVIDIA Jetson Orin Nano, FLIR Firefly USB3 cameras, Spinnaker SDK/PySpin, YOLO11n & YOLOv8n, TensorRT, ZeroMQ, central DeepSORT.',
     contribution:[
       'Benchmarked YOLO11n and YOLOv8n on the Jetson Orin Nano across 1–4 cameras, 640×640 or 1440×1080 input, and FP16 versus INT8 TensorRT precision.',
       'Deployed and tested optimized YOLO detection on Jetson edge hardware, including its camera input and frame-processing pipeline.',
-      'Helped design distributed sensing units (three cameras plus one Jetson in the report’s proposed unit) with a central tracking PC and high-speed network connection.',
+      'Helped design distributed sensing units with three cameras and one Jetson each, connected to a central tracking PC over a high-speed network.',
       'Worked on the edge-to-server data pipeline: detection boxes/classes/confidences, encoded full frames and object crops serialized into JSON, then published using ZeroMQ PUSH.'
     ],
     pipeline:[
-      {title:'1 · Capture',body:'FLIR Firefly USB3 cameras stream to a Jetson. Spinnaker SDK/PySpin manages acquisition, auto-exposure and white balance.'},
-      {title:'2 · Detect',body:'YOLO11n / YOLOv8n TensorRT engines run on the edge, producing boxes, class IDs and confidence values.'},
-      {title:'3 · Package & send',body:'The reported implementation Base64-encodes full frames and detection crops, combines them with metadata in JSON, then uses a ZeroMQ PUSH socket.'},
-      {title:'4 · Track centrally',body:'A central server receives the sensing-unit outputs. DeepSORT-based identity association is the tracking component described in the report.'}
+      {title:'Capture',body:'FLIR Firefly USB3 cameras stream to a Jetson. Spinnaker SDK/PySpin manages acquisition, auto-exposure and white balance.'},
+      {title:'Detect',body:'YOLO11n / YOLOv8n TensorRT engines run on the edge, producing boxes, class IDs and confidence values.'},
+      {title:'Package & send',body:'Base64-encode full frames and detection crops, combine them with detection metadata in JSON, and send packets using a ZeroMQ PUSH socket.'},
+      {title:'Track centrally',body:'A central server receives and decodes the sensing-unit outputs, with DeepSORT used for tracking and identity association.'}
     ],
     challenges:[
-      {tag:'01 / REAL-TIME PERFORMANCE',title:'How many streams can one Jetson handle?',problem:'A single model may run quickly, but camera streams compete for limited device compute and memory as their count grows.',response:'I benchmarked both YOLO model variants at two resolutions and two precision settings, recording per-camera FPS for one, two, three and four concurrent streams.',evidence:'IP report, pp. 3–5: 32 model / resolution / precision / camera-count configurations and FPS plots.'},
-      {tag:'02 / EDGE MODEL DEPLOYMENT',title:'Inference speed depends on precision and input size',problem:'The practical throughput changes when the detector uses FP16 versus INT8 or processes higher-resolution images.',response:'I deployed TensorRT versions of YOLO11n and YOLOv8n and compared the resulting FPS. For YOLO11n at 640×640 with one camera, INT8 reached 20.39 FPS versus 18.92 FPS in FP16.',evidence:'IP report, p. 3, YOLO11n FPS table. These are measured configurations, not a generalized speedup claim.'},
-      {tag:'03 / DISTRIBUTED INTEGRATION',title:'Connecting camera nodes to one tracker',problem:'Each Jetson must capture images, run detection, and send records that a central server can understand across multiple camera feeds.',response:'I helped architect sensing units and a ZeroMQ PUSH/JSON exchange carrying detection metadata and encoded full frames plus crops. The central system was designed around DeepSORT.',evidence:'IP report, pp. 1–2 and 5–6. Network bandwidth, end-to-end latency and cross-camera ID metrics are not reported.'}
+      {tag:'01 / REAL-TIME PERFORMANCE',title:'How many streams can one Jetson handle?',problem:'A single model may run quickly, but camera streams compete for limited device compute and memory as their count grows.',response:'I benchmarked both YOLO model variants at two resolutions and two precision settings, recording per-camera FPS for one, two, three and four concurrent streams.',evidence:'Tested 32 combinations of model, input resolution, inference precision, and camera count. The benchmark charts below show how throughput changes as streams are added.'},
+      {tag:'02 / EDGE MODEL DEPLOYMENT',title:'Inference speed depends on precision and input size',problem:'The practical throughput changes when the detector uses FP16 versus INT8 or processes higher-resolution images.',response:'I deployed TensorRT versions of YOLO11n and YOLOv8n and compared the resulting FPS. For YOLO11n at 640×640 with one camera, INT8 reached 20.39 FPS versus 18.92 FPS in FP16.',evidence:'In this one-camera YOLO11n test, INT8 ran faster than FP16. Actual performance depends on the model, resolution, and number of active cameras.'},
+      {tag:'03 / DISTRIBUTED INTEGRATION',title:'Connecting camera nodes to one tracker',problem:'Each Jetson must capture images, run detection, and send records that a central server can understand across multiple camera feeds.',response:'I helped architect sensing units and a ZeroMQ PUSH/JSON exchange carrying detection metadata and encoded full frames plus crops. The central system was designed around DeepSORT.',evidence:'The system defines how camera nodes send detections and images to the tracking PC. Network usage, end-to-end delay, and cross-camera identity accuracy require further measurement.'}
     ],
     outcomes:[{big:'20.42 FPS',small:'YOLOv8n INT8 · 640×640 · one camera'},{big:'32',small:'Benchmarked configurations across two models'},{big:'1–4',small:'Concurrent camera streams in the published tables'}],
     takeaway:'A distributed vision system needs measured throughput and a well-defined data path—not just a fast detector benchmark.',
     media:[
-      {src:'../../assets/media/edgefusion-ip-architecture.svg',label:'Architecture · Sensing units & tracker',caption:'Recreated from my 2025 IP report (pp. 5–6): camera-connected Jetson nodes use ZeroMQ to communicate with a central tracking PC. The written design defines a three-camera sensing unit; four-camera runs were also benchmarked.',type:'real',wide:true,diagram:true},
-      {src:'../../assets/media/edgefusion-ip-benchmarks.svg',label:'Measurements · Jetson throughput',caption:'Chart redrawn from the IP report tables (pp. 3–4). Each point is the mean of the individual camera FPS entries in that configuration; it is NOT aggregate FPS across all cameras.',type:'real',wide:true,diagram:true}
+      {src:'../../assets/media/edgefusion-architecture.svg',label:'Architecture · Sensing units & tracker',caption:'Each sensing unit connects three cameras to a Jetson Orin Nano. ZeroMQ carries detection data and images to a central tracking PC. Performance tests also covered up to four simultaneous camera streams.',type:'real',wide:true,diagram:true},
+      {src:'../../assets/media/edgefusion-benchmarks.svg',label:'Measurements · Jetson throughput',caption:'Measured FPS across one to four camera streams, comparing YOLO11n and YOLOv8n at two resolutions and FP16/INT8 precision. Each plotted value averages the FPS of the active camera streams; it is not their combined throughput.',type:'real',wide:true,diagram:true}
     ],
     benchmarkRows:[
       {model:'YOLO11n',resolution:'640 × 640',precision:'FP16',one:'18.92',four:'11.79 · 11.26 · 10.83 · 10.84'},
@@ -181,42 +200,45 @@ export const projects = [
       'Transmit compact identity embeddings in place of cropped/full images when feasible.',
       'Add a message broker, higher-capacity networking and a camera watchdog for larger-scale deployments.'
     ],
-    benchmarkNote:'All figures are as recorded in my IP report (2025, pp. 3–4). Four-camera values list FPS for each of the four streams—not a combined total. The report mentions possible 7–8 camera scaling but does not include equivalent benchmark tables beyond four cameras. The report schematic depicts four cameras per Jetson while its written unit design specifies three; this illustration follows the written unit definition.',
+    benchmarkNote:'The four-camera column lists each camera’s FPS separately, not a combined total. The charts plot the mean per-camera FPS at each camera count. Benchmarks covered one to four streams; performance beyond four cameras has not been verified. The architecture illustrates the three-camera sensing-unit design.',
     links:[],
     showExploreFurther:false,
     demoNote:null,
-    disclaimer:'Source: “EdgeFusion Multi-Camera Tracking System,” Independent Project Report, IIIT Delhi, Monsoon 2025 (Ayush Kitnawat and Suyash Pathak, guided by Prof. Saket Anand and Prof. Sanjit Kaul). FPS describes detector throughput in specific configurations. The report does not quantify bandwidth reduction, transmission latency, re-identification accuracy or production readiness. Future-work proposals are not claimed as implemented.'
+    disclaimer:'The FPS measurements reflect detector performance in the tested Jetson configurations, not guaranteed real-world throughput. Bandwidth reduction, end-to-end latency, cross-camera re-identification accuracy, and production reliability have not yet been quantified. The improvements listed below are future work, not completed features.'
   },
   {
     slug:'rocket-avionics',number:'05',label:'EMBEDDED SYSTEMS / TELEMETRY',
-    title:'Model rocketry · avionics & telemetry',short:'From onboard sensors to real-time flight data on a ground-station screen.',
+    title:'Model rocketry · avionics & telemetry',short:'STM32 sensing, Kalman-filter-based sensor fusion, and live LoRa telemetry for a model rocket.',
     date:'Oct 2024 — Aug 2025',affiliation:'IIIT Delhi model rocket project',
     role:'Avionics & telemetry lead · embedded integration and ground-station software',
     hero:'../../assets/media/rocket-launch-display.jpg',heroAlt:'Actual upright model rocket displayed at an outdoor event',heroCaption:'REAL PROJECT PHOTO / MODEL ROCKET',
-    intro:'An embedded-systems project to measure and monitor a model rocket’s flight from the ground.',
-    businessProblem:'During flight and testing, a rocket cannot be connected to a laptop by a cable. The team needs live information about its altitude, orientation and system behavior to understand what is happening and investigate faults.',
-    projectGoal:'Build an STM32-based onboard sensing and telemetry system, send flight measurements over LoRa, and display the readings through a Python ground station.',
-    practicalValue:'Makes flight data visible during experiments and available for review afterward. No verified radio range or flight reliability metric is claimed here.',
-    scope:'Embedded microcontroller, onboard sensing, wireless telemetry and Python ground station.',
+    intro:'We built avionics to collect flight measurements, handle noisy IMU readings, and send useful telemetry from a model rocket to a ground station.',
+    businessProblem:'During flight and testing, a rocket cannot be connected to a laptop by a cable. Its onboard IMU readings can also be noisy and accumulate drift, making orientation estimates harder to trust. The team needed a way to process sensor data and monitor the rocket remotely.',
+    projectGoal:'Integrate onboard sensors with an STM32, use Kalman-filter-based sensor fusion to reduce IMU estimation drift, transmit telemetry over LoRa, and visualize the measurements in a Python ground station.',
+    practicalValue:'Combines onboard sensing, state estimation and wireless monitoring in one embedded pipeline, making flight behavior easier to inspect. Drift reduction and radio performance are not presented as quantified results.',
+    scope:'STM32 firmware, IMU and onboard sensors, Kalman filtering, LoRa telemetry and Python ground-station software.',
     contribution:[
       'Designed and implemented STM32 firmware integration for flight-related sensor readings.',
+      'Worked on Kalman-filter-based sensor fusion to make IMU-derived estimates more stable and address accumulated drift.',
       'Integrated onboard measurements of altitude, orientation and other flight telemetry.',
       'Implemented LoRa-based data communication between the onboard system and a ground station.',
       'Built a Python pipeline for live visualization, monitoring and post-flight analysis.'
     ],
     pipeline:[
-      {title:'Measure',body:'Collect flight-related signals using onboard sensors and an STM32.'},
-      {title:'Package',body:'Represent key readings as telemetry suitable for the wireless link.'},
-      {title:'Transmit',body:'Send packets from the vehicle over LoRa to the receiver.'},
-      {title:'Visualize',body:'Decode and display live values in a Python ground station for inspection and analysis.'}
+      {title:'Read sensors',body:'Collect IMU and other flight-related sensor readings on the STM32.'},
+      {title:'Estimate & fuse',body:'Apply Kalman filtering to combine sensor information and reduce noise and accumulated IMU drift in the estimated motion state.'},
+      {title:'Prepare telemetry',body:'Package sensor readings and the estimated flight state into data suitable for transmission.'},
+      {title:'Transmit',body:'Send telemetry packets from the rocket over LoRa to the ground receiver.'},
+      {title:'Visualize',body:'Decode and display live values in a Python ground station for inspection and later analysis.'}
     ],
     challenges:[
-      {tag:'01 / EMBEDDED',title:'Hardware delivers different sensor signals',problem:'A flight controller needs to bring together multiple measurements at a useful update cadence.',response:'Built STM32-side sensor integration and a consistent stream of altitude, orientation and flight data.',evidence:'Avionics and telemetry implementation described in the resume.'},
-      {tag:'02 / LINK',title:'The receiver is not next to the rocket',problem:'A telemetry system must communicate over a wireless long-range channel instead of relying on a cable.',response:'Selected LoRa for telemetry transport and built corresponding reception handling at the ground station.',evidence:'LoRa hardware and software integration.'},
-      {tag:'03 / DIAGNOSTICS',title:'Raw serial values are hard to interpret during testing',problem:'Flight telemetry is more useful when operators can inspect trends while it arrives.',response:'Implemented Python-based live monitoring and a post-flight analysis path rather than storing unstructured logs alone.',evidence:'Ground-station visualization and monitoring software.'}
+      {tag:'01 / EMBEDDED',title:'Bringing multiple sensors into one system',problem:'Different onboard sensors produce different measurements that need to be collected and processed together.',response:'Integrated the sensor readings with STM32 firmware to provide altitude, orientation and other flight-related data.',evidence:'An integrated onboard sensing path feeding the rest of the avionics system.'},
+      {tag:'02 / SENSOR FUSION',title:'IMU noise and drift affect the orientation estimate',problem:'Using raw IMU measurements alone can produce noisy estimates; small errors accumulate when angular motion is integrated over time.',response:'Worked on Kalman-filter-based sensor fusion to combine onboard measurements and correct the IMU-derived estimate, rather than relying on unfiltered data.',evidence:'A filtering and estimation stage added to the avionics workflow. No numerical drift-reduction benchmark is claimed.'},
+      {tag:'03 / LINK',title:'The receiver is not next to the rocket',problem:'The rocket must send useful state information over a wireless link rather than relying on a cable.',response:'Used LoRa to transmit telemetry and handled reception on the ground-station side.',evidence:'LoRa communication between the onboard system and ground receiver.'},
+      {tag:'04 / DIAGNOSTICS',title:'Raw readings are difficult to inspect during testing',problem:'Sensor data is more useful when the team can see how the estimates and measurements change over time.',response:'Built Python-based live monitoring and an analysis workflow for received telemetry.',evidence:'Ground-station visualization of flight-related measurements.'}
     ],
-    outcomes:[{big:'STM32',small:'Onboard sensing and microcontroller integration'},{big:'LoRa',small:'Long-range wireless telemetry'},{big:'Python',small:'Live ground station and analysis'}],
-    takeaway:'Reliable robotics also depends on the invisible engineering: synchronized measurements, understandable packets and useful diagnostics.',
+    outcomes:[{big:'Kalman filter',small:'IMU drift handling and sensor fusion'},{big:'STM32 + LoRa',small:'Onboard sensing and wireless telemetry'},{big:'Python',small:'Live ground station and analysis'}],
+    takeaway:'A useful avionics system does more than read sensors: it must handle imperfect measurements, estimate the rocket’s state and make that information available on the ground.',
     media:[
       {src:'../../assets/media/rocket-launch-display.jpg',label:'Project photo · Full rocket',caption:'The team’s model rocket on display at an outdoor event. Photo from the project collection.',type:'real'},
       {src:'../../assets/media/rocket-launch-portrait.jpg',label:'Project photo · Rocket on stand',caption:'An upright view of the completed rocket and launch/event setup.',type:'real'},
@@ -224,8 +246,9 @@ export const projects = [
       {src:'../../assets/media/rocket-side-view.jpg',label:'Project photo · Rocket body and fins',caption:'Additional display angle showing the rocket body, fins and nearby hardware.',type:'real'}
     ],
     links:[],
-    demoNote:'Flight video and ground-station screenshots have not been supplied for public use.',
-    disclaimer:'No flight range, packet-loss rate or field-performance metric is claimed without a published test.'
+    showExploreFurther:false,
+    demoNote:null,
+    disclaimer:'The Kalman-filter fusion work is described without claiming a measured reduction in IMU drift. Flight range, packet-loss rate and field-performance metrics are also not quantified.'
   },
   {
     slug:'wildlife-classification',number:'06',label:'COMPUTER VISION / FEATURE ANALYSIS',
